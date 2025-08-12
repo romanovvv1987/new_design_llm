@@ -9,7 +9,8 @@ const AITicker = () => {
       price: 30.00,
       version: 'v4.5',
       isLatest: true,
-      volume: '2.1M'
+      volume: '2.1M',
+      contextWindow: '128K'
     },
     {
       id: 2,
@@ -18,7 +19,8 @@ const AITicker = () => {
       price: 15.00,
       version: 'v3.5',
       isLatest: true,
-      volume: '1.8M'
+      volume: '1.8M',
+      contextWindow: '200K'
     },
     {
       id: 3,
@@ -27,7 +29,8 @@ const AITicker = () => {
       price: 12.00,
       version: 'v2.0',
       isLatest: true,
-      volume: '1.5M'
+      volume: '1.5M',
+      contextWindow: '1M'
     },
     {
       id: 4,
@@ -36,7 +39,8 @@ const AITicker = () => {
       price: 8.00,
       version: 'v3.1',
       isLatest: true,
-      volume: '950K'
+      volume: '950K',
+      contextWindow: '32K'
     },
     {
       id: 5,
@@ -45,7 +49,8 @@ const AITicker = () => {
       price: 25.00,
       version: 'v8.7',
       isLatest: true,
-      volume: '780K'
+      volume: '780K',
+      contextWindow: '64K'
     },
     {
       id: 6,
@@ -54,7 +59,8 @@ const AITicker = () => {
       price: 18.00,
       version: 'v4.2',
       isLatest: true,
-      volume: '620K'
+      volume: '620K',
+      contextWindow: '100K'
     },
     {
       id: 7,
@@ -63,7 +69,8 @@ const AITicker = () => {
       price: 10.00,
       version: 'v2.1',
       isLatest: false,
-      volume: '420K'
+      volume: '420K',
+      contextWindow: '8K'
     },
     {
       id: 8,
@@ -72,7 +79,8 @@ const AITicker = () => {
       price: 5.00,
       version: 'v1.0',
       isLatest: false,
-      volume: '380K'
+      volume: '380K',
+      contextWindow: '10K'
     },
     {
       id: 9,
@@ -81,7 +89,8 @@ const AITicker = () => {
       price: 2.00,
       version: 'v3.5',
       isLatest: false,
-      volume: '3.2M'
+      volume: '3.2M',
+      contextWindow: '16K'
     },
     {
       id: 10,
@@ -90,7 +99,8 @@ const AITicker = () => {
       price: 8.00,
       version: 'v2.1',
       isLatest: false,
-      volume: '890K'
+      volume: '890K',
+      contextWindow: '100K'
     },
     {
       id: 11,
@@ -99,7 +109,8 @@ const AITicker = () => {
       price: 6.00,
       version: 'v1.5',
       isLatest: false,
-      volume: '720K'
+      volume: '720K',
+      contextWindow: '500K'
     },
     {
       id: 12,
@@ -108,7 +119,8 @@ const AITicker = () => {
       price: 4.00,
       version: 'v2.0',
       isLatest: false,
-      volume: '680K'
+      volume: '680K',
+      contextWindow: '4K'
     },
     {
       id: 13,
@@ -117,7 +129,8 @@ const AITicker = () => {
       price: 15.00,
       version: 'v7.2',
       isLatest: false,
-      volume: '520K'
+      volume: '520K',
+      contextWindow: '32K'
     },
     {
       id: 14,
@@ -126,7 +139,8 @@ const AITicker = () => {
       price: 12.00,
       version: 'v3.1',
       isLatest: false,
-      volume: '450K'
+      volume: '450K',
+      contextWindow: '50K'
     },
     {
       id: 15,
@@ -135,7 +149,8 @@ const AITicker = () => {
       price: 9.00,
       version: 'v34B',
       isLatest: true,
-      volume: '380K'
+      volume: '380K',
+      contextWindow: '100K'
     },
     {
       id: 16,
@@ -144,7 +159,8 @@ const AITicker = () => {
       price: 3.00,
       version: 'v1.2',
       isLatest: false,
-      volume: '290K'
+      volume: '290K',
+      contextWindow: '100K'
     },
     {
       id: 17,
@@ -153,7 +169,8 @@ const AITicker = () => {
       price: 1.00,
       version: 'v1.0',
       isLatest: true,
-      volume: '180K'
+      volume: '180K',
+      contextWindow: '32K'
     },
     {
       id: 18,
@@ -162,7 +179,8 @@ const AITicker = () => {
       price: 8.00,
       version: 'v7.0',
       isLatest: false,
-      volume: '220K'
+      volume: '220K',
+      contextWindow: '8K'
     },
     {
       id: 19,
@@ -171,7 +189,8 @@ const AITicker = () => {
       price: 5.00,
       version: 'v2.0',
       isLatest: false,
-      volume: '150K'
+      volume: '150K',
+      contextWindow: '25K'
     },
     {
       id: 20,
@@ -180,7 +199,8 @@ const AITicker = () => {
       price: 35.00,
       version: 'v4.5',
       isLatest: true,
-      volume: '1.9M'
+      volume: '1.9M',
+      contextWindow: '128K'
     }
   ])
 
@@ -192,12 +212,12 @@ const AITicker = () => {
 
   return (
     <div className="bg-gray-50">
-      <div className="overflow-hidden">
+      <div className="overflow-hidden relative">
         <div className="flex animate-scroll">
           {models.map((model, index) => (
             <div
               key={`${model.id}-${index}`}
-              className="flex-shrink-0 flex items-center gap-3 px-4 py-2 min-w-[180px]"
+              className="flex-shrink-0 flex items-center gap-3 px-4 py-2 min-w-[220px]"
             >
               {/* Model Info */}
               <div className="flex-1 min-w-0">
@@ -214,14 +234,23 @@ const AITicker = () => {
                   <span className={`text-xs font-medium ${model.isLatest ? 'text-green-600' : 'text-gray-600'}`}>
                     {model.version}
                   </span>
+                  <span className="text-xs text-blue-600 font-medium">
+                    {model.contextWindow}
+                  </span>
                 </div>
               </div>
             </div>
-          ))}
+                      ))}
+          </div>
+          
+          {/* Размывающийся левый край */}
+          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none z-10"></div>
+          
+          {/* Размывающийся правый край */}
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none z-10"></div>
         </div>
       </div>
-    </div>
-  )
+    )
 }
 
 export default AITicker
