@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  body {
+    @apply font-medium text-medium-primary bg-medium-background;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+  
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer components {
+  .medium-logo {
+    @apply text-medium-primary;
+  }
+  
+  .medium-search {
+    @apply bg-medium-search border border-medium-border rounded-full px-4 py-2 text-sm font-sohne;
+  }
+  
+  /* Теги */
+  .bg-medium-tag {
+    @apply bg-gray-100;
+  }
+  
+  .text-medium-tag-text {
+    @apply text-gray-700;
+  }
+  
+  .hover\:bg-medium-tag-hover:hover {
+    @apply bg-gray-200;
+  }
+  
+  /* DropdownMenu стили */
+  .bg-popover {
+    background-color: hsl(var(--popover));
+  }
+  
+  .text-popover-foreground {
+    color: hsl(var(--popover-foreground));
+  }
+  
+  .bg-accent {
+    background-color: hsl(var(--accent));
+  }
+  
+  .text-accent-foreground {
+    color: hsl(var(--accent-foreground));
+  }
+  
+  .bg-muted {
+    background-color: hsl(var(--muted));
+  }
+  
+  .text-muted-foreground {
+    color: hsl(var(--muted-foreground));
+  }
+  
+  .border {
+    border-color: hsl(var(--border));
+  }
+  
+  /* Sheet (мобильное меню) стили */
+  .bg-background\/80 {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+  }
+  
+  /* Анимации для Sheet */
+  .data-\[state\=open\]\:animate-in {
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  .data-\[state\=closed\]\:animate-out {
+    animation: slideOut 0.3s ease-in;
+  }
+  
+  .data-\[state\=open\]\:fade-in-0 {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .data-\[state\=closed\]\:fade-out-0 {
+    animation: fadeOut 0.3s ease-in;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+}
+
+/* Адаптивные стили для разных экранов */
+@layer utilities {
+  /* Мобильные устройства */
+  @media (max-width: 640px) {
+    .text-medium-title {
+      @apply text-2xl;
+    }
+    
+    .text-medium-subtitle {
+      @apply text-lg;
+    }
+    
+    .text-medium-body {
+      @apply text-base;
+    }
+  }
+  
+  /* Планшеты */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .text-medium-title {
+      @apply text-3xl;
+    }
+    
+    .text-medium-subtitle {
+      @apply text-xl;
+    }
+    
+    .text-medium-body {
+      @apply text-lg;
+    }
+  }
+  
+  /* Десктопы */
+  @media (min-width: 1025px) {
+    .text-medium-title {
+      @apply text-4xl;
+    }
+    
+    .text-medium-subtitle {
+      @apply text-2xl;
+    }
+    
+    .text-medium-body {
+      @apply text-lg;
+    }
+  }
+}
