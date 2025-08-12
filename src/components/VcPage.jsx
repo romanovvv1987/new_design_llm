@@ -26,7 +26,8 @@ import {
   Menu,
   TrendingUp,
   Clock,
-  Eye
+  Eye,
+  PlayCircle
 } from 'lucide-react'
 
 const VcPage = () => {
@@ -120,6 +121,77 @@ const VcPage = () => {
         </Container>
       </header>
 
+      {/* Topics Navigation */}
+      <div className="border-b border-gray-200 bg-white">
+        <Container>
+          <div className="relative">
+            <div className="flex items-center overflow-x-auto scrollbar-hide py-4">
+              {/* Explore Topics Button */}
+              <div className="flex-shrink-0 mr-4">
+                <a 
+                  href="#" 
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="20" width="20" className="text-gray-600">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"></circle>
+                    <path fill="currentColor" fillRule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.478 2 12s4.477 10 10 10m3.936-14.844.147-.99-.88.477-5.898 3.194-.22.12-.037.246-.984 6.636-.146.99.879-.477 5.899-3.194.22-.119.036-.247zM9.2 15.996l.719-4.846 3.59 2.514zm1.292-5.665 3.59 2.514.718-4.846z" clipRule="evenodd"></path>
+                  </svg>
+                  <span>Исследовать темы</span>
+                </a>
+              </div>
+
+              {/* Topic Tags */}
+              <div className="flex items-center gap-3 flex-nowrap">
+                <a href="#" className="flex-shrink-0 px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-medium hover:bg-blue-700 transition-colors">
+                  Искусственный интеллект
+                </a>
+                <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
+                  Технологии
+                </a>
+                <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
+                  Программирование
+                </a>
+                <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
+                  Data Science
+                </a>
+                <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
+                  Машинное обучение
+                </a>
+                <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
+                  OpenAI
+                </a>
+                <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
+                  GPT-4
+                </a>
+                <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
+                  Квантовые вычисления
+                </a>
+                <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
+                  Кибербезопасность
+                </a>
+                <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
+                  Медицина
+                </a>
+                <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
+                  Образование
+                </a>
+                <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
+                  Этика
+                </a>
+              </div>
+            </div>
+
+            {/* Scroll Indicators */}
+            <div className="absolute left-0 top-0 bottom-0 flex items-center pointer-events-none">
+              <div className="w-8 h-full bg-gradient-to-r from-white to-transparent"></div>
+            </div>
+            <div className="absolute right-0 top-0 bottom-0 flex items-center pointer-events-none">
+              <div className="w-8 h-full bg-gradient-to-l from-white to-transparent"></div>
+            </div>
+          </div>
+        </Container>
+      </div>
+
       {/* Main Content */}
       <main>
         <Container>
@@ -211,14 +283,18 @@ const VcPage = () => {
                     </div>
                   </div>
 
-                  {/* Article Image */}
-                  <figure className="text-center">
-                    <img 
-                      src="https://miro.medium.com/v2/resize:fit:1400/1*ZkeGGo0gnAiD39Rs3nD2mg.jpeg" 
-                      alt="Резюме" 
-                      className="w-full max-w-4xl mx-auto rounded-lg"
-                    />
-                  </figure>
+                                {/* Article Image */}
+              <figure className="text-center relative">
+                <img 
+                  src="https://miro.medium.com/v2/resize:fit:1400/1*ZkeGGo0gnAiD39Rs3nD2mg.jpeg" 
+                  alt="Резюме" 
+                  className="w-full max-w-4xl mx-auto rounded-lg"
+                />
+                {/* Video Icon Overlay - можно включить для демонстрации */}
+                {/* <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-lg">
+                  <PlayCircle className="h-16 w-16 text-white drop-shadow-lg" />
+                </div> */}
+              </figure>
 
                   {/* Article Text */}
                   <div className="text-gray-800 space-y-6 max-w-3xl mx-auto">
