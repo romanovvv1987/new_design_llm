@@ -245,18 +245,18 @@ const VcFeedPage = () => {
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-4">
-              <a href="#" className="text-2xl font-bold text-blue-600">
-                VC.ru
+              <a href="#" className="text-2xl font-bold text-gray-900">
+                Medium
               </a>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-6">
-              <a href="#" className="text-gray-600 hover:text-gray-900">Главная</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900">Популярное</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900">Все</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900">Новости</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900">Аналитика</a>
+              <a href="#" className="text-gray-600 hover:text-gray-900">Home</a>
+              <a href="#" className="text-gray-600 hover:text-gray-900">Popular</a>
+              <a href="#" className="text-gray-600 hover:text-gray-900">All</a>
+              <a href="#" className="text-gray-600 hover:text-gray-900">News</a>
+              <a href="#" className="text-gray-600 hover:text-gray-900">Analysis</a>
             </nav>
 
             {/* Desktop Actions */}
@@ -290,11 +290,11 @@ const VcFeedPage = () => {
                     <SheetTitle>Меню</SheetTitle>
                   </SheetHeader>
                   <div className="mt-6 space-y-4">
-                    <a href="#" className="block text-gray-600 hover:text-gray-900">Главная</a>
-                    <a href="#" className="block text-gray-600 hover:text-gray-900">Популярное</a>
-                    <a href="#" className="block text-gray-600 hover:text-gray-900">Все</a>
-                    <a href="#" className="block text-gray-600 hover:text-gray-900">Новости</a>
-                    <a href="#" className="block text-gray-600 hover:text-gray-900">Аналитика</a>
+                    <a href="#" className="block text-gray-600 hover:text-gray-900">Home</a>
+                    <a href="#" className="block text-gray-600 hover:text-gray-900">Popular</a>
+                    <a href="#" className="block text-gray-600 hover:text-gray-900">All</a>
+                    <a href="#" className="block text-gray-600 hover:text-gray-900">News</a>
+                    <a href="#" className="block text-gray-600 hover:text-gray-900">Analysis</a>
                   </div>
                 </SheetContent>
               </Sheet>
@@ -318,56 +318,56 @@ const VcFeedPage = () => {
                     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"></circle>
                     <path fill="currentColor" fillRule="evenodd" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.478 2 12s4.477 10 10 10m3.936-14.844.147-.99-.88.477-5.898 3.194-.22.12-.037.246-.984 6.636-.146.99.879-.477 5.899-3.194.22-.119.036-.247zM9.2 15.996l.719-4.846 3.59 2.514zm1.292-5.665 3.59 2.514.718-4.846z" clipRule="evenodd"></path>
                   </svg>
-                  <span>Исследовать темы</span>
+                  <span>Explore topics</span>
                 </a>
               </div>
 
               {/* Topic Tags */}
               <div className="flex items-center gap-3 flex-nowrap">
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-medium hover:bg-blue-700 transition-colors">
-                  Культура
+                  Culture
                 </a>
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
-                  Саморазвитие
+                  Self Improvement
                 </a>
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
-                  Мир
+                  World
                 </a>
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
-                  Жизнь
+                  Life
                 </a>
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
-                  Общество
+                  Society
                 </a>
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
-                  Разработка ПО
+                  Software Development
                 </a>
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
-                  Технологии
+                  Technology
                 </a>
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
-                  Медиа
+                  Media
                 </a>
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
-                  Работа
+                  Work
                 </a>
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
-                  Программирование
+                  Programming
                 </a>
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
                   Data Science
                 </a>
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
-                  Искусственный интеллект
+                  Artificial Intelligence
                 </a>
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
-                  Машинное обучение
+                  Machine Learning
                 </a>
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
-                  Квантовые вычисления
+                  Quantum Computing
                 </a>
                 <a href="#" className="flex-shrink-0 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-medium text-gray-700 transition-colors">
-                  Кибербезопасность
+                  Cybersecurity
                 </a>
               </div>
             </div>
@@ -512,7 +512,7 @@ const VcFeedPage = () => {
               {/* Load More Button */}
               <div className="mt-8 text-center">
                 <Button variant="outline" size="lg">
-                  Загрузить еще
+                  Load More
                 </Button>
               </div>
             </div>
@@ -524,30 +524,30 @@ const VcFeedPage = () => {
               <div className="bg-gray-50 rounded-lg p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <TrendingUp className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-gray-900">Тренды</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">Trending</h3>
                 </div>
                 <div className="space-y-3">
                   <a href="#" className="block text-sm font-medium text-gray-900 hover:text-blue-600">
                     #GPT-4
                   </a>
                   <a href="#" className="block text-sm font-medium text-gray-900 hover:text-blue-600">
-                    #ИскусственныйИнтеллект
+                    #ArtificialIntelligence
                   </a>
                   <a href="#" className="block text-sm font-medium text-gray-900 hover:text-blue-600">
                     #OpenAI
                   </a>
                   <a href="#" className="block text-sm font-medium text-gray-900 hover:text-blue-600">
-                    #МашинноеОбучение
+                    #MachineLearning
                   </a>
                   <a href="#" className="block text-sm font-medium text-gray-900 hover:text-blue-600">
-                    #КвантовыеВычисления
+                    #QuantumComputing
                   </a>
                 </div>
               </div>
 
               {/* Popular Authors */}
               <div className="bg-gray-50 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Популярные авторы</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Popular Authors</h3>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <Avatar 
@@ -587,18 +587,18 @@ const VcFeedPage = () => {
 
               {/* Newsletter */}
               <div className="bg-blue-50 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Подписка на новости</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Newsletter</h3>
                 <p className="text-sm text-gray-600 mb-4">
-                  Получайте самые интересные статьи первыми
+                  Get the most interesting articles first
                 </p>
                 <div className="space-y-3">
                   <input 
                     type="email" 
-                    placeholder="Ваш email"
+                    placeholder="Your email"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                   <Button className="w-full" size="sm">
-                    Подписаться
+                    Subscribe
                   </Button>
                 </div>
               </div>
