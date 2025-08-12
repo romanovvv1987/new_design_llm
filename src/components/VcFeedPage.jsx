@@ -38,6 +38,7 @@ import {
 const VcFeedPage = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false)
 
   // Данные для ленты статей
   const articles = [
@@ -265,9 +266,77 @@ const VcFeedPage = () => {
 
             {/* Desktop Actions */}
             <div className="hidden lg:flex items-center gap-3">
-              <Button variant="ghost" size="sm">
-                <Search className="h-4 w-4" />
-              </Button>
+              <div className="flex items-center gap-2">
+                {isDesktopSearchOpen ? (
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <input
+                      type="text"
+                      placeholder="Search articles, authors, topics..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                      autoFocus
+                      onBlur={() => {
+                        setTimeout(() => {
+                          if (!searchQuery) {
+                            setIsDesktopSearchOpen(false)
+                          }
+                        }, 200)
+                      }}
+                    />
+                    {searchQuery && (
+                      <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-80 overflow-y-auto">
+                        <div className="p-3">
+                          <h3 className="text-sm font-medium text-gray-900 mb-3">Search Results</h3>
+                          <div className="space-y-2">
+                            {articles
+                              .filter(article => 
+                                article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                article.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                article.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
+                              )
+                              .slice(0, 5)
+                              .map(article => (
+                                <div key={article.id} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
+                                  <div className="flex-shrink-0">
+                                    {article.image ? (
+                                      <img 
+                                        src={article.image} 
+                                        alt={article.title}
+                                        className="w-8 h-8 object-cover rounded-lg"
+                                      />
+                                    ) : (
+                                      <div className="w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center">
+                                        <div className="text-gray-400 text-xs">
+                                          <svg fill="currentColor" viewBox="0 0 24 24" className="w-4 h-4">
+                                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                    )}
+                                  </div>
+                                  <div className="min-w-0 flex-1">
+                                    <h4 className="text-sm font-medium text-gray-900 line-clamp-1">{article.title}</h4>
+                                    <p className="text-xs text-gray-500">{article.author}</p>
+                                  </div>
+                                </div>
+                              ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={() => setIsDesktopSearchOpen(true)}
+                  >
+                    <Search className="h-4 w-4" />
+                  </Button>
+                )}
+              </div>
               <Button variant="ghost" size="sm">
                 <Bell className="h-4 w-4" />
               </Button>
@@ -589,7 +658,7 @@ const VcFeedPage = () => {
                         </div>
                         
                         {/* Meta Info */}
-                        <div className="relative overflow-x-auto scrollbar-hide">
+                        <div className="lg:hidden relative overflow-x-auto scrollbar-hide">
                           <div className="flex items-center justify-between text-sm text-gray-500 min-w-max">
                             <div className="flex items-center gap-4">
                               <div className="flex items-center gap-2">
@@ -626,6 +695,37 @@ const VcFeedPage = () => {
                           </div>
                           <div className="absolute right-0 top-0 bottom-0 flex items-center pointer-events-none">
                             <div className="w-4 h-full bg-gradient-to-l from-white to-transparent"></div>
+                          </div>
+                        </div>
+                        
+                        {/* Desktop Meta Info */}
+                        <div className="hidden lg:flex items-center justify-between text-sm text-gray-500">
+                          <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-2">
+                              <Avatar 
+                                alt={article.author} 
+                                size="sm"
+                                src={article.authorAvatar}
+                              />
+                              <span className="font-medium text-gray-700">{article.author}</span>
+                            </div>
+                            <span>{article.date}</span>
+                            <span>{article.readTime}</span>
+                          </div>
+                          
+                          <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-1">
+                              <Eye className="h-3 w-3" />
+                              <span>{article.views}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <ThumbsUp className="h-3 w-3" />
+                              <span>{article.likes}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <MessageCircle className="h-3 w-3" />
+                              <span>{article.comments}</span>
+                            </div>
                           </div>
                         </div>
                       </div>
