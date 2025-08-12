@@ -15,6 +15,7 @@ import { UserMenu } from './ui/UserMenu'
 import { Tag } from './ui/Tag'
 import VideoPlaceholder from './ui/VideoPlaceholder'
 import ContentPlaceholder from './ui/ContentPlaceholder'
+
 import { 
   Search, 
   PenTool, 
@@ -486,6 +487,8 @@ const VcFeedPage = () => {
           </div>
         </Container>
       </header>
+
+
 
       {/* Topics Navigation */}
       <div className="border-b border-gray-200 bg-white">

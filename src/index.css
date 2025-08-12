@@ -274,6 +274,20 @@
   }
   
   .delay-300 {
-    animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+/* AI Ticker Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
   }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
 }
