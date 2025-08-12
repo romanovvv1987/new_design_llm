@@ -4,6 +4,7 @@ import TestPage from './components/TestPage'
 import MediumPage from './components/MediumPage'
 import VcPage from './components/VcPage'
 import VcFeedPage from './components/VcFeedPage'
+import Top10Page from './components/Top10Page'
 import AITicker from './components/ui/AITicker'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/medium" element={<MediumPage />} />
           <Route path="/vc" element={<VcPage />} />
           <Route path="/vc-feed" element={<VcFeedPage />} />
+          <Route path="/top10" element={<Top10Page />} />
         </Routes>
       </div>
     </Router>
