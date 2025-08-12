@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from './ui/Button'
 import { Avatar } from './ui/Avatar'
 import { Badge } from './ui/Badge'
@@ -31,10 +31,14 @@ import {
   Eye,
   MessageCircle,
   ThumbsUp,
-  PlayCircle
+  PlayCircle,
+  X
 } from 'lucide-react'
 
 const VcFeedPage = () => {
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+
   // Данные для ленты статей
   const articles = [
     {
@@ -245,8 +249,8 @@ const VcFeedPage = () => {
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-4">
-              <a href="#" className="text-2xl font-bold text-gray-900">
-                Medium
+              <a href="#" className="text-lg font-black text-gray-900">
+                GPTMARKETCUP
               </a>
             </div>
 
@@ -276,25 +280,136 @@ const VcFeedPage = () => {
 
             {/* Mobile Actions */}
             <div className="flex lg:hidden items-center gap-2">
-              <Button variant="ghost" size="sm">
-                <Search className="h-4 w-4" />
-              </Button>
-              <Sheet>
+              <Sheet open={isSearchOpen} onOpenChange={setIsSearchOpen}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="sm">
-                    <Menu className="h-4 w-4" />
+                    <Search className="h-4 w-4" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right">
+                <SheetContent side="top" className="h-full">
                   <SheetHeader>
-                    <SheetTitle>Меню</SheetTitle>
+                    <SheetTitle className="text-left">Search & Menu</SheetTitle>
                   </SheetHeader>
-                  <div className="mt-6 space-y-4">
-                    <a href="#" className="block text-gray-600 hover:text-gray-900">Home</a>
-                    <a href="#" className="block text-gray-600 hover:text-gray-900">Popular</a>
-                    <a href="#" className="block text-gray-600 hover:text-gray-900">All</a>
-                    <a href="#" className="block text-gray-600 hover:text-gray-900">News</a>
-                    <a href="#" className="block text-gray-600 hover:text-gray-900">Analysis</a>
+                  <div className="mt-6">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <input
+                        type="text"
+                        placeholder="Search articles, authors, topics..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        autoFocus
+                      />
+                    </div>
+                    
+                    {/* Search Results */}
+                    {searchQuery && (
+                      <div className="mt-6 space-y-4">
+                        <h3 className="text-sm font-medium text-gray-900">Search Results</h3>
+                        <div className="space-y-3">
+                          {articles
+                            .filter(article => 
+                              article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              article.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              article.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
+                            )
+                            .slice(0, 5)
+                            .map(article => (
+                              <div key={article.id} className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg cursor-pointer">
+                                <div className="flex-shrink-0">
+                                  {article.image ? (
+                                    <img 
+                                      src={article.image} 
+                                      alt={article.title}
+                                      className="w-12 h-12 object-cover rounded-lg"
+                                    />
+                                  ) : (
+                                    <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center">
+                                      <div className="text-gray-400 text-xs text-center">
+                                        <div className="w-6 h-6 mx-auto mb-1">
+                                          <svg fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                  <h4 className="text-sm font-medium text-gray-900 line-clamp-1">{article.title}</h4>
+                                  <p className="text-xs text-gray-500">{article.author}</p>
+                                </div>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Navigation Menu */}
+                    <div className="mt-8 border-t border-gray-200 pt-6">
+                      <h3 className="text-sm font-medium text-gray-900 mb-4">Navigation</h3>
+                      <div className="space-y-3">
+                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
+                          <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                          </div>
+                          <span className="text-gray-700">Home</span>
+                        </a>
+                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
+                          <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                            <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                            </svg>
+                          </div>
+                          <span className="text-gray-700">Popular</span>
+                        </a>
+                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
+                          <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                          </div>
+                          <span className="text-gray-700">All</span>
+                        </a>
+                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
+                          <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                            <svg className="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                            </svg>
+                          </div>
+                          <span className="text-gray-700">News</span>
+                        </a>
+                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
+                          <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                            <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                            </svg>
+                          </div>
+                          <span className="text-gray-700">Analysis</span>
+                        </a>
+                      </div>
+                    </div>
+                    
+                    {/* Popular Searches */}
+                    {!searchQuery && (
+                      <div className="mt-6">
+                        <h3 className="text-sm font-medium text-gray-900 mb-3">Popular Searches</h3>
+                        <div className="flex flex-wrap gap-2">
+                          {['GPT-4', 'AI', 'Machine Learning', 'OpenAI', 'Technology'].map(tag => (
+                            <button
+                              key={tag}
+                              onClick={() => setSearchQuery(tag)}
+                              className="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-xs text-gray-700 transition-colors"
+                            >
+                              {tag}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </SheetContent>
               </Sheet>
@@ -474,33 +589,43 @@ const VcFeedPage = () => {
                         </div>
                         
                         {/* Meta Info */}
-                        <div className="flex items-center justify-between text-sm text-gray-500">
-                          <div className="flex items-center gap-4">
-                            <div className="flex items-center gap-2">
-                              <Avatar 
-                                alt={article.author} 
-                                size="sm"
-                                src={article.authorAvatar}
-                              />
-                              <span className="font-medium text-gray-700">{article.author}</span>
+                        <div className="relative overflow-x-auto scrollbar-hide">
+                          <div className="flex items-center justify-between text-sm text-gray-500 min-w-max">
+                            <div className="flex items-center gap-4">
+                              <div className="flex items-center gap-2">
+                                <Avatar 
+                                  alt={article.author} 
+                                  size="sm"
+                                  src={article.authorAvatar}
+                                />
+                                <span className="font-medium text-gray-700">{article.author}</span>
+                              </div>
+                              <span>{article.date}</span>
+                              <span>{article.readTime}</span>
                             </div>
-                            <span>{article.date}</span>
-                            <span>{article.readTime}</span>
+                            
+                            <div className="flex items-center gap-4">
+                              <div className="flex items-center gap-1">
+                                <Eye className="h-3 w-3" />
+                                <span>{article.views}</span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <ThumbsUp className="h-3 w-3" />
+                                <span>{article.likes}</span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <MessageCircle className="h-3 w-3" />
+                                <span>{article.comments}</span>
+                              </div>
+                            </div>
                           </div>
                           
-                          <div className="flex items-center gap-4">
-                            <div className="flex items-center gap-1">
-                              <Eye className="h-3 w-3" />
-                              <span>{article.views}</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <ThumbsUp className="h-3 w-3" />
-                              <span>{article.likes}</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <MessageCircle className="h-3 w-3" />
-                              <span>{article.comments}</span>
-                            </div>
+                          {/* Scroll Indicators */}
+                          <div className="absolute left-0 top-0 bottom-0 flex items-center pointer-events-none">
+                            <div className="w-4 h-full bg-gradient-to-r from-white to-transparent"></div>
+                          </div>
+                          <div className="absolute right-0 top-0 bottom-0 flex items-center pointer-events-none">
+                            <div className="w-4 h-full bg-gradient-to-l from-white to-transparent"></div>
                           </div>
                         </div>
                       </div>
