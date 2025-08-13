@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button } from './ui/Button'
 import { Avatar } from './ui/Avatar'
 import { Badge } from './ui/Badge'
@@ -40,6 +41,7 @@ import {
 } from 'lucide-react'
 
 const VcFeedPage = () => {
+  const { t } = useTranslation();
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false)
@@ -346,6 +348,7 @@ const VcFeedPage = () => {
 
             {/* Mobile Actions */}
             <div className="flex lg:hidden items-center gap-2">
+              <LanguageSelect />
               <Sheet open={isSearchOpen} onOpenChange={setIsSearchOpen}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="sm">
@@ -536,31 +539,31 @@ const VcFeedPage = () => {
                       <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                       </svg>
-                      Home
+                      {t('nav.home')}
                     </button>
                     <button className="flex items-center gap-2 px-3 py-3 text-sm font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent hover:border-gray-300 transition-colors whitespace-nowrap">
                       <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                       </svg>
-                      Popular
+                      {t('nav.popular')}
                     </button>
                     <button className="flex items-center gap-2 px-3 py-3 text-sm font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent hover:border-gray-300 transition-colors whitespace-nowrap">
                       <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                       </svg>
-                      All
+                      {t('nav.all')}
                     </button>
                     <button className="flex items-center gap-2 px-3 py-3 text-sm font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent hover:border-gray-300 transition-colors whitespace-nowrap">
                       <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                       </svg>
-                      News
+                      {t('nav.news')}
                     </button>
                     <button className="flex items-center gap-2 px-3 py-3 text-sm font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent hover:border-gray-300 transition-colors whitespace-nowrap">
                       <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                       </svg>
-                      Analysis
+                      {t('nav.analysis')}
                     </button>
                   </div>
                   
@@ -757,7 +760,7 @@ const VcFeedPage = () => {
               <div className="bg-gray-50 rounded-lg p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <TrendingUp className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-gray-900">Top AI Models</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">{t('sidebar.topAIModels')}</h3>
                 </div>
                 <div className="space-y-3">
                   {[
@@ -795,7 +798,7 @@ const VcFeedPage = () => {
                 </div>
                 <div className="mt-6 pt-4 border-t border-gray-200">
                   <a href="/top10" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-                    View full ranking →
+                    {t('sidebar.viewFullRanking')} →
                   </a>
                 </div>
               </div>
@@ -804,15 +807,15 @@ const VcFeedPage = () => {
               <div className="bg-gray-50 rounded-lg p-6">
                 <div className="flex items-center gap-2 mb-4">
                   <Bookmark className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-gray-900">Reading list</h3>
+                  <h3 className="text-lg font-semibold text-gray-900">{t('sidebar.readingList')}</h3>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
-                  Click the <Bookmark className="h-4 w-4 inline text-gray-400" /> on any story to easily add it to your reading list or a custom list that you can share.
+                  {t('readingList.instructions')}
                 </p>
                 <div className="text-center py-8">
                   <Bookmark className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-                  <p className="text-sm text-gray-500">Your reading list is empty</p>
-                  <p className="text-xs text-gray-400 mt-1">Start building your list by bookmarking stories</p>
+                  <p className="text-sm text-gray-500">{t('sidebar.readingListEmpty')}</p>
+                  <p className="text-xs text-gray-400 mt-1">{t('sidebar.readingListDescription')}</p>
                 </div>
               </div>
 
@@ -820,7 +823,7 @@ const VcFeedPage = () => {
 
               {/* Who to Follow */}
               <div className="bg-gray-50 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Who to follow</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('sidebar.whoToFollow')}</h3>
                 <div className="space-y-4">
                   {/* Author 1 */}
                   <div className="flex items-start gap-3">
@@ -831,11 +834,11 @@ const VcFeedPage = () => {
                     />
                     <div className="min-w-0 flex-1">
                       <h4 className="text-sm font-semibold text-gray-900 truncate">Linda Caroll</h4>
-                      <p className="text-xs text-gray-500 mb-1">55K followers</p>
+                      <p className="text-xs text-gray-500 mb-1">55K {t('article.followers')}</p>
                       <p className="text-xs text-gray-600 line-clamp-2">Everything is storytelling. https://lindac.substack.com/</p>
                     </div>
                     <Button variant="outline" size="sm" className="flex-shrink-0">
-                      Follow
+                      {t('button.follow')}
                     </Button>
                   </div>
 
@@ -848,11 +851,11 @@ const VcFeedPage = () => {
                     />
                     <div className="min-w-0 flex-1">
                       <h4 className="text-sm font-semibold text-gray-900 truncate">Write A Catalyst</h4>
-                      <p className="text-xs text-gray-500 mb-1">Publication · 132K followers</p>
+                      <p className="text-xs text-gray-500 mb-1">Publication · 132K {t('article.followers')}</p>
                       <p className="text-xs text-gray-600 line-clamp-2">Write A Catalyst and Build it into Existence.</p>
                     </div>
                     <Button variant="outline" size="sm" className="flex-shrink-0">
-                      Follow
+                      {t('button.follow')}
                     </Button>
                   </div>
 
@@ -865,11 +868,11 @@ const VcFeedPage = () => {
                     />
                     <div className="min-w-0 flex-1">
                       <h4 className="text-sm font-semibold text-gray-900 truncate">Wes O'Donnell</h4>
-                      <p className="text-xs text-gray-500 mb-1">47K followers</p>
+                      <p className="text-xs text-gray-500 mb-1">47K {t('article.followers')}</p>
                       <p className="text-xs text-gray-600 line-clamp-2">US Army & US Air Force Veteran | Global Security Writer | Juris Doctor | Intel Forecaster | TEDx Speaker</p>
                     </div>
                     <Button variant="outline" size="sm" className="flex-shrink-0">
-                      Follow
+                      {t('button.follow')}
                     </Button>
                   </div>
 
@@ -882,7 +885,7 @@ const VcFeedPage = () => {
                     />
                     <div className="min-w-0 flex-1">
                       <h4 className="text-sm font-semibold text-gray-900 truncate">Counter Arts</h4>
-                      <p className="text-xs text-gray-500 mb-1">Publication · 37K followers</p>
+                      <p className="text-xs text-gray-500 mb-1">Publication · 37K {t('article.followers')}</p>
                       <p className="text-xs text-gray-600 line-clamp-2">The (Counter)Cultural One-Stop for Nonfiction on Medium… incorporating categories for: 'Art', 'Culture', 'Equality', 'Photography', 'Film', 'Mental Health', 'Music' and 'Literature'.</p>
                     </div>
                     <Button variant="outline" size="sm" className="flex-shrink-0">
@@ -899,11 +902,11 @@ const VcFeedPage = () => {
                     />
                     <div className="min-w-0 flex-1">
                       <h4 className="text-sm font-semibold text-gray-900 truncate">Dr. Allison Wiltz</h4>
-                      <p className="text-xs text-gray-500 mb-1">73K followers</p>
+                      <p className="text-xs text-gray-500 mb-1">73K {t('article.followers')}</p>
                       <p className="text-xs text-gray-600 line-clamp-2">Black womanist scholar with a PhD from New Orleans, LA with bylines in Oprah Daily, Momentum, ZORA, Cultured. #WEOC Founder</p>
                     </div>
                     <Button variant="outline" size="sm" className="flex-shrink-0">
-                      Follow
+                      {t('button.follow')}
                     </Button>
                   </div>
                 </div>

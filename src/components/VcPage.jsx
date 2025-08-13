@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button } from './ui/Button'
 import { Avatar } from './ui/Avatar'
 import { Badge } from './ui/Badge'
@@ -11,6 +12,7 @@ import {
   SheetTrigger,
 } from './ui/Sheet'
 import { LanguageSelect } from './ui/LanguageSelect'
+import LanguageSwitcher from './LanguageSwitcher'
 import { UserMenu } from './ui/UserMenu'
 import { Tag } from './ui/Tag'
 import { 
@@ -34,6 +36,7 @@ import {
 } from 'lucide-react'
 
 const VcPage = () => {
+  const { t } = useTranslation();
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false)
@@ -73,23 +76,23 @@ const VcPage = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-8">
               <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
-                Home
+                {t('nav.home')}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
               </a>
               <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
-                Popular
+                {t('nav.popular')}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
               </a>
               <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
-                All
+                {t('nav.all')}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
               </a>
               <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
-                News
+                {t('nav.news')}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
               </a>
               <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
-                Analysis
+                {t('nav.analysis')}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
               </a>
             </nav>
@@ -102,7 +105,7 @@ const VcPage = () => {
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <input
                       type="text"
-                      placeholder="Search articles, authors, topics..."
+                      placeholder={t('search.placeholder')}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
@@ -118,7 +121,7 @@ const VcPage = () => {
                     {searchQuery && (
                       <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-80 overflow-y-auto">
                         <div className="p-3">
-                          <h3 className="text-sm font-medium text-gray-900 mb-3">Search Results</h3>
+                          <h3 className="text-sm font-medium text-gray-900 mb-3">{t('article.searchResults')}</h3>
                           <div className="space-y-2">
                             <div className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer">
                               <div className="flex-shrink-0">
@@ -131,8 +134,8 @@ const VcPage = () => {
                                 </div>
                               </div>
                               <div className="min-w-0 flex-1">
-                                <h4 className="text-sm font-medium text-gray-900 line-clamp-1">AI & Technology Insights</h4>
-                                <p className="text-xs text-gray-500">Search results for "{searchQuery}"</p>
+                                <h4 className="text-sm font-medium text-gray-900 line-clamp-1">{t('publication.aiTechnologyInsights')}</h4>
+                                <p className="text-xs text-gray-500">{t('article.searchResultsFor')} "{searchQuery}"</p>
                               </div>
                             </div>
                           </div>
@@ -151,6 +154,7 @@ const VcPage = () => {
                 )}
               </div>
               <LanguageSelect />
+              <LanguageSwitcher />
               <Button variant="ghost" size="icon">
                 <Bell className="h-4 w-4" />
               </Button>
@@ -364,7 +368,7 @@ const VcPage = () => {
                   <div className="flex items-center justify-between gap-1 sm:gap-2">
                     <Badge variant="member">
                       <Star className="h-4 w-4 fill-yellow-400" />
-                      <span>История только для участников</span>
+                      <span>{t('article.memberOnly')}</span>
                     </Badge>
                     
                     <div className="flex items-center gap-1 sm:gap-2">
@@ -374,11 +378,11 @@ const VcPage = () => {
                       </Button>
                       <Button variant="ghost" size="sm" className="h-8 px-2 sm:h-9 sm:px-3">
                         <Play className="h-4 w-4 sm:h-5 sm:w-5" />
-                        <span className="ml-1 text-xs sm:text-sm">Слушать</span>
+                        <span className="ml-1 text-xs sm:text-sm">{t('button.listen')}</span>
                       </Button>
                       <Button variant="ghost" size="sm" className="hidden sm:flex">
                         <Share2 className="h-4 w-4 mr-2" />
-                        Поделиться
+                        {t('button.share')}
                       </Button>
                       <Button variant="ghost" size="sm" className="h-8 px-2 sm:h-9 sm:px-3">
                         <Bookmark className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -427,10 +431,10 @@ const VcPage = () => {
                       <div className="bg-gray-50 rounded-lg p-6 border border-gray-200 my-8 relative z-10">
                         <div className="text-center">
                           <h2 className="text-xl font-bold text-gray-900 mb-3">
-                            Create an account to read the full story.
+                            {t('auth.createAccount')}
                           </h2>
                           <p className="text-gray-600 mb-4 text-sm">
-                            The author made this story available to GPTMARKETCUP members only.
+                            {t('auth.authorMadeStoryAvailable')}
                           </p>
                           
                           {/* Sign up buttons */}
@@ -451,17 +455,17 @@ const VcPage = () => {
                                   </g>
                                 </g>
                               </svg>
-                              Sign up with Google
+                              {t('button.signUpWithGoogle')}
                             </Button>
                           </div>
                           
                           <p className="text-sm text-gray-600">
-                            Already have an account?{' '}
+                            {t('auth.alreadyHaveAccount')}{' '}
                             <button 
                               className="text-blue-600 hover:underline font-medium"
                               onClick={() => setIsAuthenticated(true)}
                             >
-                              Sign in
+                              {t('auth.signInHere')}
                             </button>
                           </p>
                         </div>
@@ -471,7 +475,7 @@ const VcPage = () => {
                     {/* Comments Section */}
                     <div className="mt-12 border-t border-gray-200 pt-8">
                       <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-xl font-bold text-gray-900">Responses (21)</h2>
+                        <h2 className="text-xl font-bold text-gray-900">{t('comments.title')} (21)</h2>
                         <div className="flex items-center gap-2">
                           <div className="relative">
                             <a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">
@@ -490,7 +494,7 @@ const VcPage = () => {
                           <div className="flex-1">
                             <div className="bg-white rounded-lg border border-gray-200 p-3">
                               <textarea 
-                                placeholder="Write a response..." 
+                                placeholder={t('comments.addComment')} 
                                 className="w-full min-h-[80px] resize-none border-none outline-none text-sm"
                                 rows="3"
                                 onClick={() => setShowAuthModal(true)}
@@ -512,7 +516,7 @@ const VcPage = () => {
                               </div>
                               <div className="flex items-center gap-2">
                                 <Button variant="ghost" size="sm">Cancel</Button>
-                                <Button size="sm" onClick={() => setShowAuthModal(true)}>Respond</Button>
+                                <Button size="sm" onClick={() => setShowAuthModal(true)}>{t('comments.reply')}</Button>
                               </div>
                             </div>
                           </div>
@@ -642,7 +646,7 @@ const VcPage = () => {
                     {/* Author Info */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-2">
-                        <h3 className="text-lg font-semibold text-gray-900">Written by George J. Ziogas</h3>
+                        <h3 className="text-lg font-semibold text-gray-900">{t('article.writtenBy')} George J. Ziogas</h3>
                         <div className="flex items-center">
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 16 16">
                             <path fill="#437AFF" d="M15.163 8c0 .65-.459 1.144-.863 1.575-.232.244-.471.5-.563.719s-.086.543-.092.875c-.006.606-.018 1.3-.49 1.781-.47.481-1.15.494-1.744.5-.324.006-.655.013-.857.094s-.465.337-.704.575c-.422.412-.906.881-1.542.881-.637 0-1.12-.469-1.543-.881-.239-.238-.49-.482-.704-.575-.214-.094-.532-.088-.857-.094-.593-.006-1.273-.019-1.744-.5s-.484-1.175-.49-1.781c-.006-.332-.012-.669-.092-.875-.08-.207-.33-.475-.563-.719-.404-.431-.863-.925-.863-1.575s.46-1.144.863-1.575c.233-.244.472-.5.563-.719.092-.219.086-.544.092-.875.006-.606.019-1.3.49-1.781s1.15-.494 1.744-.5c.325-.006.655-.012.857-.094.202-.081.465-.337.704-.575C7.188 1.47 7.671 1 8.308 1s1.12.469 1.542.881c.239.238.49.481.704.575s.533.088.857.094c.594.006 1.273.019 1.745.5.47.481.483 1.175.49 1.781.005.331.011.669.091.875s.33.475.563.719c.404.431.863.925.863 1.575"></path>
@@ -654,9 +658,9 @@ const VcPage = () => {
                       <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
                         <span>9 июня 2025</span>
                         <span>•</span>
-                        <a href="#" className="hover:text-blue-600">12.5K followers</a>
+                        <a href="#" className="hover:text-blue-600">12.5K {t('article.followers')}</a>
                         <span>•</span>
-                        <a href="#" className="hover:text-blue-600">8 following</a>
+                        <a href="#" className="hover:text-blue-600">8 {t('common.following')}</a>
                       </div>
                       
                       <p className="text-sm text-gray-700 mb-4">
@@ -667,7 +671,7 @@ const VcPage = () => {
                     {/* Action Buttons */}
                     <div className="flex-shrink-0 flex flex-col gap-2">
                       <Button variant="outline" size="sm">
-                        Follow
+                        {t('button.follow')}
                       </Button>
                       <Button variant="ghost" size="sm">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -698,10 +702,10 @@ const VcPage = () => {
                         AI & Technology Insights
                       </h4>
                       <p className="text-xs text-gray-600 mb-3 line-clamp-2">
-                        Публикация для экспертных статей о искусственном интеллекте, технологиях и их влиянии на будущее. От исследователей, для исследователей.
+                        {t('publication.description')}
                       </p>
                       <Button variant="outline" size="sm" className="text-xs">
-                        Поддержать
+                        {t('button.support')}
                       </Button>
                     </div>
                   </div>
@@ -711,22 +715,22 @@ const VcPage = () => {
                 <div className="bg-gray-50 rounded-lg p-6">
                   <div className="flex items-center gap-2 mb-4">
                     <Bookmark className="h-5 w-5 text-blue-600" />
-                    <h3 className="text-lg font-semibold text-gray-900">Reading list</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">{t('sidebar.readingList')}</h3>
                   </div>
                   <p className="text-sm text-gray-600 mb-4">
-                    Click the <Bookmark className="h-4 w-4 inline text-gray-400" /> on any story to easily add it to your reading list or a custom list that you can share.
+                    {t('readingList.instructions')}
                   </p>
                   <div className="text-center py-8">
                     <Bookmark className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-                    <p className="text-sm text-gray-500">Your reading list is empty</p>
-                    <p className="text-xs text-gray-400 mt-1">Start building your list by bookmarking stories</p>
+                    <p className="text-sm text-gray-500">{t('sidebar.readingListEmpty')}</p>
+                    <p className="text-xs text-gray-400 mt-1">{t('sidebar.readingListDescription')}</p>
                   </div>
                 </div>
 
                 {/* Block 2: Latest */}
                 <div className="bg-gray-50 rounded-lg p-6">
                   <div className="flex items-center gap-2 mb-4">
-                    <h3 className="text-lg font-semibold text-gray-900">Последние</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">{t('sidebar.latest')}</h3>
                   </div>
                   <div className="space-y-4">
                     <div className="border-b border-gray-200 pb-3">
@@ -782,7 +786,7 @@ const VcPage = () => {
                 {/* Block 3: Related */}
                 <div className="bg-gray-50 rounded-lg p-6">
                   <div className="flex items-center gap-2 mb-4">
-                    <h3 className="text-lg font-semibold text-gray-900">Похожие</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">{t('sidebar.related')}</h3>
                   </div>
                   <div className="space-y-4">
                     <div className="border-b border-gray-200 pb-3">

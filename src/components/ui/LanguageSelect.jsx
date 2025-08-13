@@ -1,9 +1,11 @@
 import * as React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import { Check, ChevronDown, Globe } from "lucide-react"
+import { Check, ChevronDown, Globe, AlertCircle } from "lucide-react"
+import { useTranslation } from 'react-i18next'
 
 import { cn } from "../../lib/utils"
 import { Button } from "./Button"
+
 
 const DropdownMenu = DropdownMenuPrimitive.Root
 
@@ -151,29 +153,98 @@ const DropdownMenuShortcut = ({
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut"
 
 const LanguageSelect = () => {
-  const [language, setLanguage] = React.useState("ru")
+  const { i18n, t } = useTranslation();
+  const [language, setLanguage] = React.useState(i18n.language || "ru")
+  const [isOpen, setIsOpen] = React.useState(false)
+  const [isMobile, setIsMobile] = React.useState(false)
+
+  // Определяем язык браузера
+  const browserLanguage = navigator.language?.split('-')[0] || 'en';
+  const isLanguageMismatch = language !== browserLanguage;
+
+  // Проверяем мобильное устройство
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // lg breakpoint
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Автоматически открываем dropdown при несоответствии языков (только на десктопе)
+  React.useEffect(() => {
+    if (isLanguageMismatch && !isMobile) {
+      setIsOpen(true);
+    } else if (isMobile) {
+      // На мобильных устройствах не открываем автоматически
+      setIsOpen(false);
+    }
+  }, [isLanguageMismatch, isMobile]);
 
   const languages = [
-    { code: "ru", name: "Русский", flag: "🇷🇺" },
-    { code: "en", name: "English", flag: "🇺🇸" },
-    { code: "es", name: "Español", flag: "🇪🇸" },
-    { code: "fr", name: "Français", flag: "🇫🇷" },
-    { code: "de", name: "Deutsch", flag: "🇩🇪" },
-    { code: "zh", name: "中文", flag: "🇨🇳" },
+    { code: "ru", name: t('language.russian'), flag: "🇷🇺" },
+    { code: "en", name: t('language.english'), flag: "🇺🇸" },
   ]
 
   const currentLanguage = languages.find(lang => lang.code === language)
 
+  const handleLanguageChange = (newLanguage) => {
+    setLanguage(newLanguage);
+    i18n.changeLanguage(newLanguage);
+    setIsOpen(false); // Закрываем dropdown после выбора
+  };
+
+  // На мобильных устройствах показываем dropdown без автоматического открытия
+  if (isMobile) {
+    return (
+      <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+        <DropdownMenuTrigger asChild>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className={`relative group ${isLanguageMismatch ? 'text-orange-500 hover:text-orange-600' : ''}`}
+          >
+            <Globe className="h-4 w-4" />
+            {isLanguageMismatch && (
+              <AlertCircle className="absolute -top-1 -right-1 h-3 w-3 text-orange-500 bg-white rounded-full" />
+            )}
+            <span className="sr-only">Выбрать язык</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-48" align="end">
+          <DropdownMenuRadioGroup value={language} onValueChange={handleLanguageChange}>
+            {languages.map((lang) => (
+              <DropdownMenuRadioItem key={lang.code} value={lang.code}>
+                <span className="mr-2">{lang.flag}</span>
+                {lang.name}
+              </DropdownMenuRadioItem>
+            ))}
+          </DropdownMenuRadioGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  }
+
+  // На десктопе показываем полный dropdown
   return (
-    <DropdownMenu>
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className={`relative group ${isLanguageMismatch ? 'text-orange-500 hover:text-orange-600' : ''}`}
+        >
           <Globe className="h-4 w-4" />
+          {isLanguageMismatch && (
+            <AlertCircle className="absolute -top-1 -right-1 h-3 w-3 text-orange-500 bg-white rounded-full" />
+          )}
           <span className="sr-only">Выбрать язык</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-48" align="end">
-        <DropdownMenuRadioGroup value={language} onValueChange={setLanguage}>
+        <DropdownMenuRadioGroup value={language} onValueChange={handleLanguageChange}>
           {languages.map((lang) => (
             <DropdownMenuRadioItem key={lang.code} value={lang.code}>
               <span className="mr-2">{lang.flag}</span>
