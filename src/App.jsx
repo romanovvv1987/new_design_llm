@@ -1,7 +1,6 @@
 import React from 'react'
 import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import TestPage from './components/TestPage'
-import MediumPage from './components/MediumPage'
 import VcPage from './components/VcPage'
 import VcPageOpen from './components/VcPageOpen'
 import VcFeedPage from './components/VcFeedPage'
@@ -21,7 +20,6 @@ function App() {
           {/* Routes */}
           <Routes>
             <Route path="/" element={<TestPage />} />
-            <Route path="/medium" element={<MediumPage />} />
             <Route path="/vc" element={<VcPage />} />
             <Route path="/vc-open" element={<VcPageOpen />} />
             <Route path="/vc-feed" element={<VcFeedPage />} />

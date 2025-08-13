@@ -12,7 +12,6 @@ import {
   SheetTrigger,
 } from './ui/Sheet'
 import { LanguageSelect } from './ui/LanguageSelect'
-import LanguageSwitcher from './LanguageSwitcher'
 import { UserMenu } from './ui/UserMenu'
 import { Tag } from './ui/Tag'
 import { 
@@ -32,7 +31,8 @@ import {
   PlayCircle,
   X,
   Mail,
-  Lock
+  Lock,
+  Plus
 } from 'lucide-react'
 
 const VcPage = () => {
@@ -153,86 +153,67 @@ const VcPage = () => {
                   </Button>
                 )}
               </div>
-              <LanguageSelect />
-              <LanguageSwitcher />
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="sm">
                 <Bell className="h-4 w-4" />
               </Button>
+              <Button variant="ghost" size="sm">
+                <PenTool className="h-4 w-4" />
+              </Button>
+              <LanguageSelect />
               <UserMenu />
             </div>
 
             {/* Mobile Actions */}
-            <div className="lg:hidden flex items-center gap-2">
+            <div className="flex lg:hidden items-center gap-2">
               <LanguageSelect />
-              <Sheet>
+              <Sheet open={isSearchOpen} onOpenChange={setIsSearchOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <Search className="h-5 w-5" />
+                  <Button variant="ghost" size="sm">
+                    <Search className="h-4 w-4" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                <SheetContent side="top" className="h-full">
                   <SheetHeader>
-                    <SheetTitle>Search & Navigation</SheetTitle>
+                    <SheetTitle className="text-left">Search & Menu</SheetTitle>
                   </SheetHeader>
-                  <div className="flex flex-col space-y-4 mt-6">
-                    {/* Mobile Search */}
+                  <div className="mt-6">
                     <div className="relative">
-                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-                      <input 
-                        type="text" 
-                        placeholder="Search articles, authors, topics..." 
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <input
+                        type="text"
+                        placeholder="Search articles, authors, topics..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        autoFocus
                       />
                     </div>
                     
-                    {/* Navigation Menu */}
-                    <div className="mt-8 border-t border-gray-200 pt-6">
-                      <h3 className="text-base font-bold text-gray-900 mb-4">Navigation</h3>
-                      <div className="space-y-3">
-                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg transition-colors group">
-                          <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                            <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                            </svg>
+                    {/* Search Results */}
+                    {searchQuery && (
+                      <div className="mt-6 space-y-4">
+                        <h3 className="text-sm font-medium text-gray-900">Search Results</h3>
+                        <div className="space-y-3">
+                          <div className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg cursor-pointer">
+                            <div className="flex-shrink-0">
+                              <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center">
+                                <div className="text-gray-400 text-xs text-center">
+                                  <div className="w-6 h-6 mx-auto mb-1">
+                                    <svg fill="currentColor" viewBox="0 0 24 24">
+                                      <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                                    </svg>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <h4 className="text-sm font-medium text-gray-900 line-clamp-1">{t('publication.aiTechnologyInsights')}</h4>
+                              <p className="text-xs text-gray-500">{t('article.searchResultsFor')} "{searchQuery}"</p>
+                            </div>
                           </div>
-                          <span className="text-sm font-semibold text-gray-800 group-hover:text-blue-700 transition-colors">Home</span>
-                        </a>
-                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-green-50 rounded-lg transition-colors group">
-                          <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
-                            <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                            </svg>
-                          </div>
-                          <span className="text-sm font-semibold text-gray-800 group-hover:text-green-700 transition-colors">Popular</span>
-                        </a>
-                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition-colors group">
-                          <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
-                            <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                            </svg>
-                          </div>
-                          <span className="text-sm font-semibold text-gray-800 group-hover:text-purple-700 transition-colors">All</span>
-                        </a>
-                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-orange-50 rounded-lg transition-colors group">
-                          <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors">
-                            <svg className="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                            </svg>
-                          </div>
-                          <span className="text-sm font-semibold text-gray-800 group-hover:text-orange-700 transition-colors">News</span>
-                        </a>
-                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-red-50 rounded-lg transition-colors group">
-                          <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
-                            <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                            </svg>
-                          </div>
-                          <span className="text-sm font-semibold text-gray-800 group-hover:text-red-700 transition-colors">Analysis</span>
-                        </a>
+                        </div>
                       </div>
-                    </div>
+                    )}
                     
                     {/* Popular Searches */}
                     {!searchQuery && (
@@ -727,58 +708,93 @@ const VcPage = () => {
                   </div>
                 </div>
 
-                {/* Block 2: Latest */}
+                {/* Block 2: Who to Follow */}
                 <div className="bg-gray-50 rounded-lg p-6">
-                  <div className="flex items-center gap-2 mb-4">
-                    <h3 className="text-lg font-semibold text-gray-900">{t('sidebar.latest')}</h3>
-                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('sidebar.whoToFollow')}</h3>
                   <div className="space-y-4">
-                    <div className="border-b border-gray-200 pb-3">
-                      <div className="flex gap-3">
-                        <div className="flex-shrink-0 w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
-                          <PlayCircle className="h-3 w-3 text-gray-400" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
-                            Нейросети в образовании: как AI меняет процесс обучения
-                          </a>
-                          <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
-                            <span>30 мин назад</span>
-                          </div>
-                        </div>
+                    {/* Author 1 */}
+                    <div className="flex items-start gap-3">
+                      <Avatar 
+                        alt="Linda Caroll" 
+                        size="md"
+                        src="https://miro.medium.com/v2/resize:fill:128:128/1*Qyz-Q2jRxi9usgoaacyF9w.jpeg"
+                      />
+                      <div className="min-w-0 flex-1">
+                        <h4 className="text-sm font-semibold text-gray-900 truncate">Linda Caroll</h4>
+                        <p className="text-xs text-gray-500 mb-1">55K {t('article.followers')}</p>
+                        <p className="text-xs text-gray-600 line-clamp-2">Everything is storytelling. https://lindac.substack.com/</p>
                       </div>
+                      <Button variant="ghost" size="icon" className="flex-shrink-0 text-gray-400 hover:text-blue-600">
+                        <Plus className="h-4 w-4" />
+                      </Button>
                     </div>
-                    <div className="border-b border-gray-200 pb-3">
-                      <div className="flex gap-3">
-                        <div className="flex-shrink-0 w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
-                          <svg className="h-3 w-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                          </svg>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
-                            Этика искусственного интеллекта: вызовы и решения
-                          </a>
-                          <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
-                            <span>1 час назад</span>
-                          </div>
-                        </div>
+
+                    {/* Author 2 */}
+                    <div className="flex items-start gap-3">
+                      <Avatar 
+                        alt="Write A Catalyst" 
+                        size="md"
+                        src="https://miro.medium.com/v2/resize:fill:128:128/1*KCHN5TM3Ga2PqZHA4hNbaw.png"
+                      />
+                      <div className="min-w-0 flex-1">
+                        <h4 className="text-sm font-semibold text-gray-900 truncate">Write A Catalyst</h4>
+                        <p className="text-xs text-gray-500 mb-1">Publication · 132K {t('article.followers')}</p>
+                        <p className="text-xs text-gray-600 line-clamp-2">Write A Catalyst and Build it into Existence.</p>
                       </div>
+                      <Button variant="ghost" size="icon" className="flex-shrink-0 text-gray-400 hover:text-blue-600">
+                        <Plus className="h-4 w-4" />
+                      </Button>
                     </div>
-                    <div>
-                      <div className="flex gap-3">
-                        <div className="flex-shrink-0 w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
-                          <PlayCircle className="h-3 w-3 text-gray-400" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
-                            Квантовые вычисления и их влияние на криптографию
-                          </a>
-                          <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
-                            <span>2 часа назад</span>
-                          </div>
-                        </div>
+
+                    {/* Author 3 */}
+                    <div className="flex items-start gap-3">
+                      <Avatar 
+                        alt="Wes O'Donnell" 
+                        size="md"
+                        src="https://miro.medium.com/v2/resize:fill:128:128/1*dniFgGeopx0e8X8ouGv7yQ@2x.jpeg"
+                      />
+                      <div className="min-w-0 flex-1">
+                        <h4 className="text-sm font-semibold text-gray-900 truncate">Wes O'Donnell</h4>
+                        <p className="text-xs text-gray-500 mb-1">47K {t('article.followers')}</p>
+                        <p className="text-xs text-gray-600 line-clamp-2">US Army & US Air Force Veteran | Global Security Writer | Juris Doctor | Intel Forecaster | TEDx Speaker</p>
                       </div>
+                      <Button variant="ghost" size="icon" className="flex-shrink-0 text-gray-400 hover:text-blue-600">
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
+
+                    {/* Author 4 */}
+                    <div className="flex items-start gap-3">
+                      <Avatar 
+                        alt="Counter Arts" 
+                        size="md"
+                        src="https://miro.medium.com/v2/resize:fill:128:128/1*StB59injG6ZBN2B2iksKYg.png"
+                      />
+                      <div className="min-w-0 flex-1">
+                        <h4 className="text-sm font-semibold text-gray-900 truncate">Counter Arts</h4>
+                        <p className="text-xs text-gray-500 mb-1">Publication · 37K {t('article.followers')}</p>
+                        <p className="text-xs text-gray-600 line-clamp-2">The (Counter)Cultural One-Stop for Nonfiction on Medium… incorporating categories for: 'Art', 'Culture', 'Equality', 'Photography', 'Film', 'Mental Health', 'Music' and 'Literature'.</p>
+                      </div>
+                      <Button variant="ghost" size="icon" className="flex-shrink-0 text-gray-400 hover:text-blue-600">
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
+
+                    {/* Author 5 */}
+                    <div className="flex items-start gap-3">
+                      <Avatar 
+                        alt="Dr. Allison Wiltz" 
+                        size="md"
+                        src="https://miro.medium.com/v2/resize:fill:128:128/1*Qyz-Q2jRxi9usgoaacyF9w.jpeg"
+                      />
+                      <div className="min-w-0 flex-1">
+                        <h4 className="text-sm font-semibold text-gray-900 truncate">Dr. Allison Wiltz</h4>
+                        <p className="text-xs text-gray-500 mb-1">23K {t('article.followers')}</p>
+                        <p className="text-xs text-gray-600 line-clamp-2">AI researcher and technology enthusiast. Writing about artificial intelligence and machine learning.</p>
+                      </div>
+                      <Button variant="ghost" size="icon" className="flex-shrink-0 text-gray-400 hover:text-blue-600">
+                        <Plus className="h-4 w-4" />
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -840,6 +856,64 @@ const VcPage = () => {
                     </div>
                   </div>
                 </div>
+
+                {/* Block 5: Social Media */}
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Присоединяйтесь к нам</h3>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Следите за нашими обновлениями в социальных сетях
+                  </p>
+                  <div className="grid grid-cols-2 gap-3">
+                    <a 
+                      href="https://vk.com/group" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.48 14.27h-1.46c-.55 0-.72-.44-1.71-1.42-.86-.86-1.24-.96-1.45-.96-.31 0-.4.1-.4.65v1.3c0 .47-.14.67-1.24.67-1.82 0-3.74-1.14-5.05-3.27C6.68 10.91 6.6 9.7 6.6 9.46c0-.21.1-.4.65-.4h1.46c.47 0 .61.21.78.67.76 2.26 2.02 4.23 2.54 4.23.18 0 .27-.09.27-.58V9.5c-.06-1-.58-1.08-.58-1.44 0-.18.14-.36.36-.36h2.28c.31 0 .42.15.42.49v2.66c0 .31.18.42.27.42.18 0 .31-.09.6-.89.39-1.18 1.12-3.36 1.12-3.36.09-.18.27-.36.66-.36h1.46c.55 0 .67.27.55.66-.24 1.14-2.57 4.53-2.57 4.53-.2.31-.27.42 0 .76.18.27.78.84 1.18 1.34.78.91 1.34 1.69 1.5 2.21.14.47-.09.71-.55.71z"/>
+                      </svg>
+                      <span className="text-sm font-medium">ВКонтакте</span>
+                    </a>
+                    
+                    <a 
+                      href="https://facebook.com/group" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-blue-800 hover:bg-blue-900 text-white rounded-lg transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                      </svg>
+                      <span className="text-sm font-medium">Facebook</span>
+                    </a>
+                    
+                    <a 
+                      href="https://twitter.com/group" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                      </svg>
+                      <span className="text-sm font-medium">Twitter</span>
+                    </a>
+                    
+                    <a 
+                      href="https://t.me/group" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                      </svg>
+                      <span className="text-sm font-medium">Telegram</span>
+                    </a>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
