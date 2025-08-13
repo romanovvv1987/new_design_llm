@@ -751,7 +751,7 @@ const VcFeedPage = () => {
             </div>
             
             {/* Sidebar - 1 column */}
-            <div className="lg:col-span-1 space-y-6">
+            <div className="lg:col-span-1 space-y-6 lg:sticky lg:top-20 lg:self-start">
               
               {/* AI Models Top 10 Preview */}
               <div className="bg-gray-50 rounded-lg p-6">

@@ -260,8 +260,8 @@ const VcPageOpen = () => {
                         Поделиться
                       </Button>
                       <Button variant="ghost" size="sm" className="h-8 px-2 sm:h-9 sm:px-3">
-                        <MoreHorizontal className="h-4 w-4 sm:h-5 sm:w-5" />
-                        <span className="hidden sm:inline ml-2">Ещё</span>
+                        <Bookmark className="h-4 w-4 sm:h-5 sm:w-5" />
+                        <span className="hidden sm:inline ml-2">+</span>
                       </Button>
                     </div>
                   </div>
@@ -546,7 +546,7 @@ const VcPageOpen = () => {
               </div>
               
               {/* Sidebar - 1 column */}
-              <div className="lg:col-span-1 space-y-6">
+              <div className="lg:col-span-1 space-y-6 lg:sticky lg:top-20 lg:self-start">
                 
                 {/* Publication Block */}
                 <div className="bg-gray-50 rounded-lg p-6">
@@ -591,7 +591,6 @@ const VcPageOpen = () => {
                 {/* Block 2: Latest */}
                 <div className="bg-gray-50 rounded-lg p-6">
                   <div className="flex items-center gap-2 mb-4">
-                    <Clock className="h-5 w-5 text-green-600" />
                     <h3 className="text-lg font-semibold text-gray-900">Последние</h3>
                   </div>
                   <div className="space-y-4">
@@ -648,7 +647,6 @@ const VcPageOpen = () => {
                 {/* Block 3: Related */}
                 <div className="bg-gray-50 rounded-lg p-6">
                   <div className="flex items-center gap-2 mb-4">
-                    <Bookmark className="h-5 w-5 text-purple-600" />
                     <h3 className="text-lg font-semibold text-gray-900">Похожие</h3>
                   </div>
                   <div className="space-y-4">
