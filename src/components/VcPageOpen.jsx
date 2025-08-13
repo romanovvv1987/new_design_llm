@@ -555,8 +555,8 @@ const VcPageOpen = () => {
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0">
                       <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                          <path fill="#242424" fillRule="evenodd" d="M12.286 3A2.33 2.33 0 0 1 14 3.748 2.325 2.325 0 0 1 15.714 3C16.977 3 18 3.99 18 5.21c0 .567-.22 1.083-.582 1.474l-.18.184-2.543 2.46a1 1 0 0 1-1.39 0l-2.543-2.46-.18-.184A2.16 2.16 0 0 1 10 5.211C10 3.99 11.023 3 12.286 3M17 5.21c0 .297-.113.571-.308.787l-.16.163L14 8.609l-2.533-2.45-.159-.162A1.16 1.16 0 0 1 11 5.21C11 4.573 11.544 4 12.286 4c.396 0 .742.167.975.422l.739.81.739-.81c.233-.255.58-.422.975-.422C16.456 4 17 4.573 17 5.21m3.542 5.293a.62.62 0 0 1 .513.185.6.6 0 0 1 .188.42c.005.119-.07.275-.298.52l-3.33 3.587c-.285.306-.682.48-1.1.48h-3.329c-.663 0-1.298.263-1.766.732l-.849.849-.033.032-3.588-3.116 1.87-1.705a2.5 2.5 0 0 1 1.685-.652h.27q.037.006.077.006h5.279a.757.757 0 1 1 0 1.514h-3.267a.5.5 0 1 0 0 1h3.267a1.757 1.757 0 0 0 1.749-1.928l2.288-1.73c.182-.137.29-.187.374-.194M6.19 13.53l1.957-1.783a3.5 3.5 0 0 1 2.358-.913h1.103v.006h4.523c.543 0 1.028.246 1.35.633L19.566 9.9c.198-.15.503-.36.893-.394.352-.03.865.035 1.305.476.352.352.466.755.48 1.086.022.561-.33.987-.565 1.24l-3.331 3.587a2.5 2.5 0 0 1-1.831.8h-3.33c-.397 0-.777.157-1.06.439l-.831.832.252.219a1 1 0 0 1 .1 1.41L9.99 21.503a1 1 0 0 1-1.411.099l-5.825-5.06a1 1 0 0 1-.1-1.41l1.656-1.907a1 1 0 0 1 1.411-.1zm-2.78 2.255 1.656-1.906 5.826 5.06-1.656 1.906z" clipRule="evenodd"></path>
+                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                         </svg>
                       </div>
                     </div>
@@ -565,11 +565,12 @@ const VcPageOpen = () => {
                         AI & Technology Insights
                       </h4>
                       <p className="text-xs text-gray-600 mb-3 line-clamp-2">
-                        {t('publication.description')}
+                        Публикация для экспертных статей о искусственном интеллекте, технологиях и их влиянии на будущее. От исследователей, для исследователей.
                       </p>
-                      <Button variant="outline" size="sm" className="text-xs">
-                        {t('button.support')}
-                      </Button>
+                      <button className="inline-flex items-center justify-center rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background border border-medium-primary text-medium-primary hover:bg-medium-primary hover:text-white h-9 px-3 text-xs">
+                        <Heart className="h-4 w-4 mr-1" />
+                        Donate
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -701,6 +702,63 @@ const VcPageOpen = () => {
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+
+                {/* Block 4: Social Media */}
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('social.joinUs')}</h3>
+                  <p className="text-sm text-gray-600 mb-4">
+                    {t('social.followUpdates')}
+                  </p>
+                  <div className="grid grid-cols-2 gap-3">
+                    <a 
+                      href="https://vk.com/group" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.48 14.27h-1.46c-.55 0-.72-.44-1.71-1.42-.86-.86-1.24-.96-1.45-.96-.31 0-.4.1-.4.65v1.3c0 .47-.14.67-1.24.67-1.82 0-3.74-1.14-5.05-3.27C6.68 10.91 6.6 9.7 6.6 9.46c0-.21.1-.4.65-.4h1.46c.47 0 .61.21.78.67.76 2.26 2.02 4.23 2.54 4.23.18 0 .27-.09.27-.58V9.5c-.06-1-.58-1.08-.58-1.44 0-.18.14-.36.36-.36h2.28c.31 0 .42.15.42.49v2.66c0 .31.18.42.27.42.18 0 .31-.09.6-.89.39-1.18 1.12-3.36 1.12-3.36.09-.18.27-.36.66-.36h1.46c.55 0 .67.27.55.66-.24 1.14-2.57 4.53-2.57 4.53-.2.31-.27.42 0 .76.18.27.78.84 1.18 1.34.78.91 1.34 1.69 1.5 2.21.14.47-.09.71-.55.71z"/>
+                      </svg>
+                      <span className="text-sm font-medium">ВКонтакте</span>
+                    </a>
+                    
+                    <a 
+                      href="https://facebook.com/group" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-blue-800 hover:bg-blue-900 text-white rounded-lg transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                      </svg>
+                      <span className="text-sm font-medium">Facebook</span>
+                    </a>
+                    
+                    <a 
+                      href="https://twitter.com/group" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                      </svg>
+                      <span className="text-sm font-medium">Twitter</span>
+                    </a>
+                    
+                    <a 
+                      href="https://t.me/group" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                      </svg>
+                      <span className="text-sm font-medium">Telegram</span>
+                    </a>
                   </div>
                 </div>
               </div>

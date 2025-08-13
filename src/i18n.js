@@ -17,7 +17,7 @@ const resources = {
       // Buttons
       'button.follow': 'Follow',
       'button.subscribe': 'Subscribe',
-      'button.support': 'Support',
+      'button.support': 'Donate',
       'button.addToReadingList': '+',
       'button.like': 'Like',
       'button.share': 'Share',
@@ -25,6 +25,7 @@ const resources = {
       'button.comment': 'Comment',
       'button.listen': 'Listen',
       'button.search': 'Search',
+      'button.loadMore': 'Load More',
       'button.signUp': 'Sign up',
       'button.signIn': 'Sign in',
       'button.signUpWithGoogle': 'Sign up with Google',
@@ -93,6 +94,20 @@ const resources = {
       'auth.authorMadeStoryAvailable': 'The author made this story available to GPTMARKETCUP members only.',
       'auth.alreadyHaveAccount': 'Already have an account?',
       'auth.signInHere': 'Sign in here',
+      'auth.signIn': 'Sign in',
+      'auth.signUp': 'Sign up',
+      'auth.email': 'Email',
+      'auth.password': 'Password',
+      'auth.enterEmail': 'Enter your email',
+      'auth.enterPassword': 'Enter your password',
+      'auth.continueWithGoogle': 'Continue with Google',
+      'auth.continueWithFacebook': 'Continue with Facebook',
+      'auth.or': 'or',
+      'auth.dontHaveAccount': "Don't have an account?",
+      'auth.termsAgreement': 'By continuing, you agree to our',
+      'auth.termsOfService': 'Terms of Service',
+      'auth.and': 'and',
+      'auth.privacyPolicy': 'Privacy Policy',
       
       // AI Models
       'aiModels.rank': 'Rank',
@@ -104,7 +119,11 @@ const resources = {
       // Common
       'common.following': 'following',
       'common.bullet': '•',
-      'common.selectLanguage': 'Select language'
+      'common.selectLanguage': 'Select language',
+      
+      // Social Media
+      'social.joinUs': 'Join us',
+      'social.followUpdates': 'Follow our updates on social networks'
     }
   },
   ru: {
@@ -130,6 +149,7 @@ const resources = {
       'button.comment': 'Комментировать',
       'button.listen': 'Слушать',
       'button.search': 'Поиск',
+      'button.loadMore': 'Загрузить еще',
       'button.signUp': 'Зарегистрироваться',
       'button.signIn': 'Войти',
       'button.signUpWithGoogle': 'Зарегистрироваться через Google',
@@ -198,6 +218,20 @@ const resources = {
       'auth.authorMadeStoryAvailable': 'Автор сделал эту историю доступной только для участников GPTMARKETCUP.',
       'auth.alreadyHaveAccount': 'Уже есть аккаунт?',
       'auth.signInHere': 'Войти здесь',
+      'auth.signIn': 'Войти',
+      'auth.signUp': 'Зарегистрироваться',
+      'auth.email': 'Email',
+      'auth.password': 'Пароль',
+      'auth.enterEmail': 'Введите ваш email',
+      'auth.enterPassword': 'Введите ваш пароль',
+      'auth.continueWithGoogle': 'Продолжить с Google',
+      'auth.continueWithFacebook': 'Продолжить с Facebook',
+      'auth.or': 'или',
+      'auth.dontHaveAccount': 'Нет аккаунта?',
+      'auth.termsAgreement': 'Продолжая, вы соглашаетесь с нашими',
+      'auth.termsOfService': 'Условиями использования',
+      'auth.and': 'и',
+      'auth.privacyPolicy': 'Политикой конфиденциальности',
       
       // AI Models
       'aiModels.rank': 'Ранг',
@@ -209,7 +243,11 @@ const resources = {
       // Common
       'common.following': 'подписок',
       'common.bullet': '•',
-      'common.selectLanguage': 'Выбрать язык'
+      'common.selectLanguage': 'Выбрать язык',
+      
+      // Social Media
+      'social.joinUs': 'Присоединяйтесь к нам',
+      'social.followUpdates': 'Следите за нашими обновлениями в социальных сетях'
     }
   }
 };

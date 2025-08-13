@@ -365,9 +365,8 @@ const VcPage = () => {
                         <Share2 className="h-4 w-4 mr-2" />
                         {t('button.share')}
                       </Button>
-                      <Button variant="ghost" size="sm" className="h-8 px-2 sm:h-9 sm:px-3">
-                        <Bookmark className="h-4 w-4 sm:h-5 sm:w-5" />
-                        <span className="hidden sm:inline ml-2">+</span>
+                      <Button variant="ghost" size="sm">
+                        <Bookmark className="h-4 w-4" />
                       </Button>
                     </div>
                   </div>
@@ -673,8 +672,8 @@ const VcPage = () => {
                   <div className="flex items-start gap-3">
                     <div className="flex-shrink-0">
                       <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                          <path fill="#242424" fillRule="evenodd" d="M12.286 3A2.33 2.33 0 0 1 14 3.748 2.325 2.325 0 0 1 15.714 3C16.977 3 18 3.99 18 5.21c0 .567-.22 1.083-.582 1.474l-.18.184-2.543 2.46a1 1 0 0 1-1.39 0l-2.543-2.46-.18-.184A2.16 2.16 0 0 1 10 5.211C10 3.99 11.023 3 12.286 3M17 5.21c0 .297-.113.571-.308.787l-.16.163L14 8.609l-2.533-2.45-.159-.162A1.16 1.16 0 0 1 11 5.21C11 4.573 11.544 4 12.286 4c.396 0 .742.167.975.422l.739.81.739-.81c.233-.255.58-.422.975-.422C16.456 4 17 4.573 17 5.21m3.542 5.293a.62.62 0 0 1 .513.185.6.6 0 0 1 .188.42c.005.119-.07.275-.298.52l-3.33 3.587c-.285.306-.682.48-1.1.48h-3.329c-.663 0-1.298.263-1.766.732l-.849.849-.033.032-3.588-3.116 1.87-1.705a2.5 2.5 0 0 1 1.685-.652h.27q.037.006.077.006h5.279a.757.757 0 1 1 0 1.514h-3.267a.5.5 0 1 0 0 1h3.267a1.757 1.757 0 0 0 1.749-1.928l2.288-1.73c.182-.137.29-.187.374-.194M6.19 13.53l1.957-1.783a3.5 3.5 0 0 1 2.358-.913h1.103v.006h4.523c.543 0 1.028.246 1.35.633L19.566 9.9c.198-.15.503-.36.893-.394.352-.03.865.035 1.305.476.352.352.466.755.48 1.086.022.561-.33.987-.565 1.24l-3.331 3.587c-.285.306-.682.48-1.1.48h-3.329c-.663 0-1.298.263-1.766.732l-.849.849-.033.032-3.588-3.116 1.87-1.705a2.5 2.5 0 0 1 1.685-.652h.27q.037.006.077.006h5.279a.757.757 0 1 1 0 1.514h-3.267a.5.5 0 1 0 0 1h3.267a1.757 1.757 0 0 0 1.749-1.928l2.288-1.73c.182-.137.29-.187.374-.194M6.19 13.53l1.957-1.783a3.5 3.5 0 0 1 2.358-.913h1.103v.006h4.523c.543 0 1.028.246 1.35.633L19.566 9.9c.198-.15.503-.36.893-.394.352-.03.865.035 1.305.476.352.352.466.755.48 1.086.022.561-.33.987-.565 1.24l-3.331 3.587c-.285.306-.682.48-1.1.48h-3.33c-.397 0-.777.157-1.06.439l-.831.832.252.219a1 1 0 0 1 .1 1.41L9.99 21.503a1 1 0 0 1-1.411.099l-5.825-5.06a1 1 0 0 1-.1-1.41l1.656-1.907a1 1 0 0 1 1.411-.1zm-2.78 2.255 1.656-1.906 5.826 5.06-1.656 1.906z" clipRule="evenodd"></path>
+                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                         </svg>
                       </div>
                     </div>
@@ -683,11 +682,12 @@ const VcPage = () => {
                         AI & Technology Insights
                       </h4>
                       <p className="text-xs text-gray-600 mb-3 line-clamp-2">
-                        {t('publication.description')}
+                        Публикация для экспертных статей о искусственном интеллекте, технологиях и их влиянии на будущее. От исследователей, для исследователей.
                       </p>
-                      <Button variant="outline" size="sm" className="text-xs">
-                        {t('button.support')}
-                      </Button>
+                      <button className="inline-flex items-center justify-center rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background border border-medium-primary text-medium-primary hover:bg-medium-primary hover:text-white h-9 px-3 text-xs">
+                        <Heart className="h-4 w-4 mr-1" />
+                        Donate
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -859,9 +859,9 @@ const VcPage = () => {
 
                 {/* Block 5: Social Media */}
                 <div className="bg-gray-50 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Присоединяйтесь к нам</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('social.joinUs')}</h3>
                   <p className="text-sm text-gray-600 mb-4">
-                    Следите за нашими обновлениями в социальных сетях
+                    {t('social.followUpdates')}
                   </p>
                   <div className="grid grid-cols-2 gap-3">
                     <a 
@@ -927,7 +927,7 @@ const VcPage = () => {
             {/* Modal Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">
-                {authMode === 'signin' ? 'Sign in' : 'Sign up'}
+                {authMode === 'signin' ? t('auth.signIn') : t('auth.signUp')}
               </h2>
               <button
                 onClick={() => setShowAuthModal(false)}
@@ -955,7 +955,7 @@ const VcPage = () => {
                       </g>
                     </g>
                   </svg>
-                  Continue with Google
+                  {t('auth.continueWithGoogle')}
                 </button>
                 
                 <button
@@ -965,7 +965,7 @@ const VcPage = () => {
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                   </svg>
-                  Continue with Facebook
+                  {t('auth.continueWithFacebook')}
                 </button>
               </div>
 
@@ -975,7 +975,7 @@ const VcPage = () => {
                   <div className="w-full border-t border-gray-300"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-white text-gray-500">or</span>
+                  <span className="px-2 bg-white text-gray-500">{t('auth.or')}</span>
                 </div>
               </div>
 
@@ -983,7 +983,7 @@ const VcPage = () => {
               <form onSubmit={handleAuth} className="space-y-4">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Email
+                    {t('auth.email')}
                   </label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -993,7 +993,7 @@ const VcPage = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Enter your email"
+                      placeholder={t('auth.enterEmail')}
                       required
                     />
                   </div>
@@ -1001,7 +1001,7 @@ const VcPage = () => {
 
                 <div>
                   <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                    Password
+                    {t('auth.password')}
                   </label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -1011,7 +1011,7 @@ const VcPage = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Enter your password"
+                      placeholder={t('auth.enterPassword')}
                       required
                     />
                   </div>
@@ -1021,19 +1021,19 @@ const VcPage = () => {
                   type="submit"
                   className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
                 >
-                  {authMode === 'signin' ? 'Sign in' : 'Sign up'}
+                  {authMode === 'signin' ? t('auth.signIn') : t('auth.signUp')}
                 </button>
               </form>
 
               {/* Switch Mode */}
               <div className="mt-6 text-center">
                 <p className="text-sm text-gray-600">
-                  {authMode === 'signin' ? "Don't have an account?" : "Already have an account?"}{' '}
+                  {authMode === 'signin' ? t('auth.dontHaveAccount') : t('auth.alreadyHaveAccount')}{' '}
                   <button
                     onClick={() => setAuthMode(authMode === 'signin' ? 'signup' : 'signin')}
                     className="text-blue-600 hover:underline font-medium"
                   >
-                    {authMode === 'signin' ? 'Sign up' : 'Sign in'}
+                    {authMode === 'signin' ? t('auth.signUp') : t('auth.signIn')}
                   </button>
                 </p>
               </div>
@@ -1041,10 +1041,10 @@ const VcPage = () => {
               {/* Terms */}
               <div className="mt-6 text-center">
                 <p className="text-xs text-gray-500">
-                  By continuing, you agree to our{' '}
-                  <a href="#" className="text-blue-600 hover:underline">Terms of Service</a>
-                  {' '}and{' '}
-                  <a href="#" className="text-blue-600 hover:underline">Privacy Policy</a>
+                  {t('auth.termsAgreement')}{' '}
+                  <a href="#" className="text-blue-600 hover:underline">{t('auth.termsOfService')}</a>
+                  {' '}{t('auth.and')}{' '}
+                  <a href="#" className="text-blue-600 hover:underline">{t('auth.privacyPolicy')}</a>
                 </p>
               </div>
             </div>
