@@ -33,7 +33,10 @@ import {
   MessageCircle,
   ThumbsUp,
   PlayCircle,
-  X
+  X,
+  ArrowUp,
+  ArrowDown,
+  Minus
 } from 'lucide-react'
 
 const VcFeedPage = () => {
@@ -256,29 +259,7 @@ const VcFeedPage = () => {
               </a>
             </div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-8">
-              <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
-                Home
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
-              </a>
-              <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
-                Popular
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
-              </a>
-              <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
-                All
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
-              </a>
-              <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
-                News
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
-              </a>
-              <a href="#" className="text-sm font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
-                Analysis
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
-              </a>
-            </nav>
+
 
             {/* Desktop Actions */}
             <div className="hidden lg:flex items-center gap-3">
@@ -431,52 +412,7 @@ const VcFeedPage = () => {
                       </div>
                     )}
                     
-                    {/* Navigation Menu */}
-                    <div className="mt-8 border-t border-gray-200 pt-6">
-                      <h3 className="text-base font-bold text-gray-900 mb-4">Navigation</h3>
-                      <div className="space-y-3">
-                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg transition-colors group">
-                          <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                            <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                            </svg>
-                          </div>
-                          <span className="text-sm font-semibold text-gray-800 group-hover:text-blue-700 transition-colors">Home</span>
-                        </a>
-                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-green-50 rounded-lg transition-colors group">
-                          <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
-                            <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                            </svg>
-                          </div>
-                          <span className="text-sm font-semibold text-gray-800 group-hover:text-green-700 transition-colors">Popular</span>
-                        </a>
-                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition-colors group">
-                          <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
-                            <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                            </svg>
-                          </div>
-                          <span className="text-sm font-semibold text-gray-800 group-hover:text-purple-700 transition-colors">All</span>
-                        </a>
-                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-orange-50 rounded-lg transition-colors group">
-                          <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors">
-                            <svg className="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                            </svg>
-                          </div>
-                          <span className="text-sm font-semibold text-gray-800 group-hover:text-orange-700 transition-colors">News</span>
-                        </a>
-                        <a href="#" className="flex items-center gap-3 p-3 hover:bg-red-50 rounded-lg transition-colors group">
-                          <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
-                            <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                            </svg>
-                          </div>
-                          <span className="text-sm font-semibold text-gray-800 group-hover:text-red-700 transition-colors">Analysis</span>
-                        </a>
-                      </div>
-                    </div>
+
                     
                     {/* Popular Searches */}
                     {!searchQuery && (
@@ -592,6 +528,48 @@ const VcFeedPage = () => {
             
             {/* Main Feed - 3 columns */}
             <div className="lg:col-span-3">
+              {/* Navigation Tabs */}
+              <div className="mb-8 border-b border-gray-200">
+                <div className="relative">
+                  <div className="flex overflow-x-auto scrollbar-hide space-x-6 lg:space-x-8">
+                    <button className="flex items-center gap-2 px-3 py-3 text-sm font-medium text-blue-600 border-b-2 border-blue-600 whitespace-nowrap">
+                      <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                      </svg>
+                      Home
+                    </button>
+                    <button className="flex items-center gap-2 px-3 py-3 text-sm font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent hover:border-gray-300 transition-colors whitespace-nowrap">
+                      <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                      </svg>
+                      Popular
+                    </button>
+                    <button className="flex items-center gap-2 px-3 py-3 text-sm font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent hover:border-gray-300 transition-colors whitespace-nowrap">
+                      <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                      </svg>
+                      All
+                    </button>
+                    <button className="flex items-center gap-2 px-3 py-3 text-sm font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent hover:border-gray-300 transition-colors whitespace-nowrap">
+                      <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                      </svg>
+                      News
+                    </button>
+                    <button className="flex items-center gap-2 px-3 py-3 text-sm font-medium text-gray-500 hover:text-gray-700 border-b-2 border-transparent hover:border-gray-300 transition-colors whitespace-nowrap">
+                      <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                      </svg>
+                      Analysis
+                    </button>
+                  </div>
+                  
+                  {/* Scroll Indicators */}
+                  <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
+                  <div className="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-white to-transparent pointer-events-none"></div>
+                </div>
+              </div>
+              
               <div className="space-y-6">
                 {articles.map((article) => (
                   <article key={article.id} className="border-b border-gray-200 pb-6 last:border-b-0">
@@ -607,33 +585,40 @@ const VcFeedPage = () => {
                           />
                         ) : article.isVideo ? (
                           // Если нет изображения, но есть видео - показываем placeholder
-                          <VideoPlaceholder 
-                            size="md" 
-                            duration={article.videoDuration}
-                          />
+                          <div className="w-24 h-24 lg:w-32 lg:h-32 bg-gray-100 rounded-lg flex items-center justify-center relative">
+                            <div className="text-gray-300 text-center">
+                              <PlayCircle className="w-8 h-8 lg:w-10 lg:h-10 mx-auto mb-1" />
+                              <div className="text-xs text-gray-400">Video</div>
+                            </div>
+                          </div>
                         ) : article.isPodcast ? (
                           // Если это подкаст
-                          <ContentPlaceholder 
-                            type="podcast"
-                            size="md" 
-                            duration={article.audioDuration}
-                          />
+                          <div className="w-24 h-24 lg:w-32 lg:h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <div className="text-gray-300 text-center">
+                              <svg className="w-8 h-8 lg:w-10 lg:h-10 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                              </svg>
+                              <div className="text-xs text-gray-400">Podcast</div>
+                            </div>
+                          </div>
                         ) : article.isPhoto ? (
                           // Если это фотогалерея
-                          <ContentPlaceholder 
-                            type="photo"
-                            size="md"
-                          />
+                          <div className="w-24 h-24 lg:w-32 lg:h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <div className="text-gray-300 text-center">
+                              <svg className="w-8 h-8 lg:w-10 lg:h-10 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                              </svg>
+                              <div className="text-xs text-gray-400">Gallery</div>
+                            </div>
+                          </div>
                         ) : (
                           // Если нет ни изображения, ни видео - показываем простой placeholder
-                          <div className="w-24 h-24 lg:w-32 lg:h-32 bg-gray-200 rounded-lg flex items-center justify-center">
-                            <div className="text-gray-400 text-xs text-center">
-                              <div className="w-8 h-8 lg:w-10 lg:h-10 mx-auto mb-1">
-                                <svg fill="currentColor" viewBox="0 0 24 24">
-                                  <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-                                </svg>
-                              </div>
-                              Изображение
+                          <div className="w-24 h-24 lg:w-32 lg:h-32 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <div className="text-gray-300 text-center">
+                              <svg className="w-8 h-8 lg:w-10 lg:h-10 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                              </svg>
+                              <div className="text-xs text-gray-400">Image</div>
                             </div>
                           </div>
                         )}
@@ -767,6 +752,53 @@ const VcFeedPage = () => {
             
             {/* Sidebar - 1 column */}
             <div className="lg:col-span-1 space-y-6">
+              
+              {/* AI Models Top 10 Preview */}
+              <div className="bg-gray-50 rounded-lg p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <TrendingUp className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-gray-900">Top AI Models</h3>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { rank: 1, name: "GPT-4", company: "OpenAI", version: "23.02.2025", inputPrice: "$10", outputPrice: "$30" },
+                    { rank: 2, name: "Claude 3 Opus", company: "Anthropic", version: "15.02.2025", inputPrice: "$5", outputPrice: "$25" },
+                    { rank: 3, name: "Gemini Ultra", company: "Google", version: "10.02.2025", inputPrice: "$3.50", outputPrice: "$10.50" },
+                    { rank: 4, name: "Claude 3 Sonnet", company: "Anthropic", version: "20.02.2025", inputPrice: "$3", outputPrice: "$15" },
+                    { rank: 5, name: "GPT-3.5 Turbo", company: "OpenAI", version: "18.02.2025", inputPrice: "$0.50", outputPrice: "$1.50" }
+                  ].map((model) => (
+                    <div key={model.rank} className="group cursor-pointer">
+                      <div className="flex items-center gap-3">
+                        <div className="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center">
+                          <span className="text-xs font-bold text-blue-600">{model.rank}</span>
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-2">
+                            <h4 className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                              {model.name}
+                            </h4>
+                            <span className="text-xs text-gray-500">({model.version})</span>
+                          </div>
+                          <div className="flex items-center gap-4 mt-1">
+                            <p className="text-xs text-gray-500">{model.company}</p>
+                            <div className="flex items-center gap-1">
+                              <span className="text-xs text-gray-600 font-medium">{model.inputPrice}</span>
+                              <ArrowDown className="h-3 w-3 text-gray-400" />
+                              <ArrowUp className="h-3 w-3 text-gray-400" />
+                              <span className="text-xs text-gray-600 font-medium">{model.outputPrice}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <a href="/top10" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+                    View full ranking →
+                  </a>
+                </div>
+              </div>
               
               {/* Reading List */}
               <div className="bg-gray-50 rounded-lg p-6">
