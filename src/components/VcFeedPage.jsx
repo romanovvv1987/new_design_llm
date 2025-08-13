@@ -18,10 +18,12 @@ import VideoPlaceholder from './ui/VideoPlaceholder'
 import ContentPlaceholder from './ui/ContentPlaceholder'
 import PublicationBlock from './ui/PublicationBlock'
 import SocialMediaBlock from './ui/SocialMediaBlock'
-import ReadingListBlock from './ui/ReadingListBlock'
+
 import WhoToFollowBlock from './ui/WhoToFollowBlock'
 import AIModelsPreviewBlock from './ui/AIModelsPreviewBlock'
-import MobileBookmarksDrawer from './ui/MobileBookmarksDrawer'
+import BookmarksModal from './ui/BookmarksModal'
+
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 
 import { 
   Search, 
@@ -44,7 +46,8 @@ import {
   ArrowUp,
   ArrowDown,
   Minus,
-  Plus
+  Plus,
+  Trash2
 } from 'lucide-react'
 
 const VcFeedPage = () => {
@@ -52,7 +55,79 @@ const VcFeedPage = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false)
-  const [isBookmarksDrawerOpen, setIsBookmarksDrawerOpen] = useState(false)
+  const [isBookmarksModalOpen, setIsBookmarksModalOpen] = useState(false)
+  const [isDesktopBookmarksOpen, setIsDesktopBookmarksOpen] = useState(false)
+  const [bookmarks, setBookmarks] = useState([
+    {
+      id: 1,
+      title: "GPT-4 превосходит GPT-3.5 — вот что изменилось",
+      author: "George J. Ziogas",
+      date: "2 часа назад",
+      image: "https://miro.medium.com/v2/resize:fit:1400/1*ZkeGGo0gnAiD39Rs3nD2mg.jpeg"
+    },
+    {
+      id: 2,
+      title: "ChatGPT vs Claude: детальное сравнение возможностей",
+      author: "AI Research Team",
+      date: "4 часа назад",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop"
+    },
+    {
+      id: 3,
+      title: "Машинное обучение в медицине: революция в диагностике",
+      author: "Dr. Elena Petrova",
+      date: "6 часов назад",
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=200&fit=crop"
+    },
+    {
+      id: 4,
+      title: "Нейросети в образовании: как AI меняет процесс обучения",
+      author: "TechEdu",
+      date: "1 день назад",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop"
+    },
+    {
+      id: 5,
+      title: "Квантовые вычисления и их влияние на криптографию",
+      author: "QuantumTech",
+      date: "2 дня назад",
+      image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=200&fit=crop"
+    },
+    {
+      id: 6,
+      title: "Этика искусственного интеллекта: вызовы и решения",
+      author: "AI Ethics",
+      date: "3 дня назад",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=200&fit=crop"
+    },
+    {
+      id: 7,
+      title: "Будущее языковых моделей: что нас ждет после GPT-4",
+      author: "Future Tech",
+      date: "4 дня назад",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=200&fit=crop"
+    },
+    {
+      id: 8,
+      title: "OpenAI: история создания и развития компании",
+      author: "Tech History",
+      date: "5 дней назад",
+      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=200&fit=crop"
+    }
+  ])
+  const [bookmarksCount, setBookmarksCount] = useState(8) // Количество закладок
+
+  // Функция для удаления закладки
+  const removeBookmark = (id) => {
+    setBookmarks(prev => prev.filter(bookmark => bookmark.id !== id))
+    setBookmarksCount(prev => prev - 1)
+  }
+
+  // Функция для очистки всех закладок
+  const clearAllBookmarks = () => {
+    setBookmarks([])
+    setBookmarksCount(0)
+  }
 
   // Данные для ленты статей
   const articles = [
@@ -344,12 +419,90 @@ const VcFeedPage = () => {
                   </Button>
                 )}
               </div>
-              <Button variant="ghost" size="sm">
-                <Bell className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="sm">
-                <PenTool className="h-4 w-4" />
-              </Button>
+              <DropdownMenuPrimitive.Root open={isDesktopBookmarksOpen} onOpenChange={setIsDesktopBookmarksOpen}>
+                <DropdownMenuPrimitive.Trigger asChild>
+                  <Button variant="ghost" size="sm" className="relative hidden lg:flex">
+                    <Bookmark className="h-4 w-4" />
+                    <span className="absolute -top-1 -right-1 h-4 w-4 bg-blue-600 text-white text-[10px] rounded-full flex items-center justify-center font-medium">
+                      {bookmarksCount}
+                    </span>
+                  </Button>
+                </DropdownMenuPrimitive.Trigger>
+                <DropdownMenuPrimitive.Portal>
+                  <DropdownMenuPrimitive.Content 
+                    className="z-50 w-80 max-h-[70vh] rounded-md border bg-white shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 hidden lg:block" 
+                    align="end"
+                    sideOffset={4}
+                  >
+                    {/* Header */}
+                    <div className="flex items-center justify-between p-3 border-b border-gray-200">
+                      <div className="flex items-center gap-2">
+                        <Bookmark className="h-5 w-5 text-blue-600" />
+                        <h2 className="text-sm font-semibold text-gray-900">Закладки</h2>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="overflow-y-auto max-h-[50vh] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400">
+                      {bookmarks.length > 0 ? (
+                        <div className="p-3 space-y-2">
+                          {bookmarks.map((bookmark) => (
+                            <div key={bookmark.id} className="flex gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                              <div className="flex-shrink-0">
+                                <img 
+                                  src={bookmark.image} 
+                                  alt={bookmark.title}
+                                  className="w-12 h-12 object-cover rounded-lg"
+                                />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h3 className="text-xs font-medium text-gray-900 line-clamp-2 mb-1">
+                                  {bookmark.title}
+                                </h3>
+                                <p className="text-xs text-gray-500">{bookmark.author}</p>
+                                <p className="text-xs text-gray-400">{bookmark.date}</p>
+                              </div>
+                              <div className="flex flex-col gap-1">
+                                <button className="p-1 hover:bg-gray-200 rounded transition-colors">
+                                  <Share2 className="h-3 w-3 text-gray-500" />
+                                </button>
+                                <button className="p-1 hover:bg-gray-200 rounded transition-colors">
+                                  <MoreHorizontal className="h-3 w-3 text-gray-500" />
+                                </button>
+                                <button 
+                                  className="p-1 hover:bg-red-100 rounded transition-colors group"
+                                  onClick={() => removeBookmark(bookmark.id)}
+                                >
+                                  <Trash2 className="h-3 w-3 text-gray-500 group-hover:text-red-600" />
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="p-4 text-center">
+                          <Bookmark className="h-8 w-8 text-gray-300 mx-auto mb-2" />
+                          <p className="text-xs text-gray-500 mb-1">Ваш список чтения пуст</p>
+                          <p className="text-xs text-gray-400">Начните создавать список, добавляя истории в закладки</p>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Footer with Clear All button */}
+                    {bookmarks.length > 0 && (
+                      <div className="p-3 border-t border-gray-200">
+                        <button 
+                          onClick={clearAllBookmarks}
+                          className="w-full text-sm text-red-600 hover:text-red-700 hover:bg-red-50 px-3 py-2 rounded-lg transition-colors font-medium"
+                        >
+                          Очистить все
+                        </button>
+                      </div>
+                    )}
+
+                  </DropdownMenuPrimitive.Content>
+                </DropdownMenuPrimitive.Portal>
+              </DropdownMenuPrimitive.Root>
               <LanguageSelect />
               <UserMenu />
             </div>
@@ -360,9 +513,13 @@ const VcFeedPage = () => {
               <Button 
                 variant="ghost" 
                 size="sm"
-                onClick={() => setIsBookmarksDrawerOpen(true)}
+                onClick={() => setIsBookmarksModalOpen(true)}
+                className="relative"
               >
                 <Bookmark className="h-4 w-4" />
+                <span className="absolute -top-1 -right-1 h-4 w-4 bg-blue-600 text-white text-[10px] rounded-full flex items-center justify-center font-medium">
+                  {bookmarksCount}
+                </span>
               </Button>
               <Sheet open={isSearchOpen} onOpenChange={setIsSearchOpen}>
                 <SheetTrigger asChild>
@@ -781,12 +938,6 @@ const VcFeedPage = () => {
               
               <AIModelsPreviewBlock />
               
-              <div className="hidden lg:block">
-                <ReadingListBlock />
-              </div>
-
-
-
               <WhoToFollowBlock />
 
               <SocialMediaBlock />
@@ -797,11 +948,15 @@ const VcFeedPage = () => {
         </Container>
       </main>
 
-      {/* Mobile Bookmarks Drawer */}
-      <MobileBookmarksDrawer 
-        isOpen={isBookmarksDrawerOpen}
-        onClose={() => setIsBookmarksDrawerOpen(false)}
+      {/* Bookmarks Modal for Mobile */}
+      <BookmarksModal 
+        isOpen={isBookmarksModalOpen} 
+        onClose={() => setIsBookmarksModalOpen(false)}
+        bookmarks={bookmarks}
+        onRemoveBookmark={removeBookmark}
+        onClearAll={clearAllBookmarks}
       />
+
     </div>
   )
 }
