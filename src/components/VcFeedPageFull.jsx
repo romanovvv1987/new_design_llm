@@ -43,6 +43,25 @@ const VcFeedPage = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false)
+  const [showAuthModal, setShowAuthModal] = useState(false)
+  const [authMode, setAuthMode] = useState('signin') // 'signin' or 'signup'
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleAuth = (e) => {
+    e.preventDefault()
+    // Здесь будет логика авторизации
+    console.log(`${authMode} with:`, { email, password })
+    setShowAuthModal(false)
+    setEmail('')
+    setPassword('')
+  }
+
+  const handleQuickAuth = (provider) => {
+    // Здесь будет логика быстрой авторизации через провайдеры
+    console.log(`Quick auth with ${provider}`)
+    setShowAuthModal(false)
+  }
 
   // Данные для ленты статей
   const articles = [
@@ -434,6 +453,15 @@ const VcFeedPage = () => {
                   </div>
                 </SheetContent>
               </Sheet>
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => setShowAuthModal(true)}
+              >
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </Button>
             </div>
           </div>
         </Container>
@@ -665,6 +693,44 @@ const VcFeedPage = () => {
                           ))}
                         </div>
                         
+                        {/* Members Only Block for Premium Articles */}
+                        {article.isPremium && (
+                          <div className="mb-3 p-3 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg">
+                            <div className="flex items-center gap-2 mb-2">
+                              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                              <span className="text-sm font-medium text-blue-700">История только для участников</span>
+                            </div>
+                            <p className="text-xs text-blue-600">
+                              Подпишитесь на Medium, чтобы читать эту и другие эксклюзивные истории
+                            </p>
+                          </div>
+                        )}
+                        
+                        {/* Publication Block */}
+                        <div className="mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                          <div className="flex items-start gap-3">
+                                                    <div className="flex-shrink-0">
+                          <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                            <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
+                          </div>
+                        </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-sm font-semibold text-gray-900 mb-1">
+                                AI & Technology Insights
+                              </h4>
+                              <p className="text-xs text-gray-600 mb-3 line-clamp-2">
+                                Публикация для экспертных статей о искусственном интеллекте, технологиях и их влиянии на будущее. От исследователей, для исследователей.
+                              </p>
+                                                          <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-red-500 transition-colors">
+                              <Heart className="h-4 w-4" />
+                              <span>Поддержать</span>
+                            </button>
+                            </div>
+                          </div>
+                        </div>
+                        
                         {/* Meta Info */}
                         <div className="lg:hidden relative overflow-x-auto scrollbar-hide">
                           <div className="flex items-center justify-between text-sm text-gray-500 min-w-max">
@@ -839,22 +905,7 @@ const VcFeedPage = () => {
                     </Button>
                   </div>
 
-                  {/* Author 2 */}
-                  <div className="flex items-start gap-3">
-                    <Avatar 
-                      alt="Write A Catalyst" 
-                      size="md"
-                      src="https://miro.medium.com/v2/resize:fill:128:128/1*KCHN5TM3Ga2PqZHA4hNbaw.png"
-                    />
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-sm font-semibold text-gray-900 truncate">Write A Catalyst</h4>
-                      <p className="text-xs text-gray-500 mb-1">Publication · 132K followers</p>
-                      <p className="text-xs text-gray-600 line-clamp-2">Write A Catalyst and Build it into Existence.</p>
-                    </div>
-                    <Button variant="outline" size="sm" className="flex-shrink-0">
-                      Follow
-                    </Button>
-                  </div>
+
 
                   {/* Author 3 */}
                   <div className="flex items-start gap-3">
@@ -978,6 +1029,113 @@ const VcFeedPage = () => {
           </div>
         </Container>
       </main>
+
+      {/* Auth Modal */}
+      {showAuthModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold text-gray-900">
+                  {authMode === 'signin' ? 'Войти' : 'Зарегистрироваться'}
+                </h2>
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  onClick={() => setShowAuthModal(false)}
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+
+              {/* Quick Auth Buttons */}
+              <div className="space-y-3 mb-6">
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-center"
+                  onClick={() => handleQuickAuth('google')}
+                >
+                  <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                  </svg>
+                  Продолжить с Google
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-center"
+                  onClick={() => handleQuickAuth('facebook')}
+                >
+                  <svg className="w-4 h-4 mr-2" fill="#1877F2" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                  Продолжить с Facebook
+                </Button>
+              </div>
+
+              <div className="relative mb-6">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300" />
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-white text-gray-500">или</span>
+                </div>
+              </div>
+
+              {/* Email/Password Form */}
+              <form onSubmit={handleAuth} className="space-y-4">
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="your@email.com"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                    Пароль
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="••••••••"
+                    required
+                  />
+                </div>
+                <Button type="submit" className="w-full">
+                  {authMode === 'signin' ? 'Войти' : 'Зарегистрироваться'}
+                </Button>
+              </form>
+
+              {/* Switch Mode */}
+              <div className="mt-6 text-center">
+                <p className="text-sm text-gray-600">
+                  {authMode === 'signin' ? 'Нет аккаунта?' : 'Уже есть аккаунт?'}{' '}
+                  <button
+                    type="button"
+                    onClick={() => setAuthMode(authMode === 'signin' ? 'signup' : 'signin')}
+                    className="text-blue-600 hover:text-blue-700 font-medium"
+                  >
+                    {authMode === 'signin' ? 'Зарегистрироваться' : 'Войти'}
+                  </button>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

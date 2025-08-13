@@ -329,27 +329,7 @@ const VcPage = () => {
       {/* Main Content */}
       <main>
         <Container>
-          <div className="py-6 lg:py-8">
-            {/* Publication Header */}
-            <div className="border-b border-gray-200 pb-4 lg:pb-6 mb-6 lg:mb-8">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-                  <a href="#" className="text-base lg:text-lg font-medium text-gray-900 hover:underline">
-                    AI & Technology Insights
-                  </a>
-                  <span className="hidden sm:inline text-gray-400">·</span>
-                  <Button variant="ghost" size="sm" className="w-fit">
-                    Подписаться на публикацию
-                  </Button>
-                </div>
-                
-                {/* Member Badge */}
-                <Badge variant="member">
-                  <Star className="h-4 w-4 fill-yellow-400" />
-                  <span>История только для участников</span>
-                </Badge>
-              </div>
-            </div>
+          <div className="pt-0 pb-2 lg:pb-4">
 
 
 
@@ -381,23 +361,30 @@ const VcPage = () => {
                   </div>
 
                   {/* Article Actions */}
-                  <div className="flex items-center justify-end gap-1 sm:gap-2">
-                    <Button variant="ghost" size="sm" className="h-8 px-2 sm:h-9 sm:px-3">
-                      <Heart className="h-4 w-4 sm:h-5 sm:w-5" />
-                      <span className="ml-1 text-xs sm:text-sm">--</span>
-                    </Button>
-                    <Button variant="ghost" size="sm" className="h-8 px-2 sm:h-9 sm:px-3">
-                      <Play className="h-4 w-4 sm:h-5 sm:w-5" />
-                      <span className="ml-1 text-xs sm:text-sm">Слушать</span>
-                    </Button>
-                    <Button variant="ghost" size="sm" className="hidden sm:flex">
-                      <Share2 className="h-4 w-4 mr-2" />
-                      Поделиться
-                    </Button>
-                    <Button variant="ghost" size="sm" className="h-8 px-2 sm:h-9 sm:px-3">
-                      <MoreHorizontal className="h-4 w-4 sm:h-5 sm:w-5" />
-                      <span className="hidden sm:inline ml-2">Ещё</span>
-                    </Button>
+                  <div className="flex items-center justify-between gap-1 sm:gap-2">
+                    <Badge variant="member">
+                      <Star className="h-4 w-4 fill-yellow-400" />
+                      <span>История только для участников</span>
+                    </Badge>
+                    
+                    <div className="flex items-center gap-1 sm:gap-2">
+                      <Button variant="ghost" size="sm" className="h-8 px-2 sm:h-9 sm:px-3">
+                        <Heart className="h-4 w-4 sm:h-5 sm:w-5" />
+                        <span className="ml-1 text-xs sm:text-sm">--</span>
+                      </Button>
+                      <Button variant="ghost" size="sm" className="h-8 px-2 sm:h-9 sm:px-3">
+                        <Play className="h-4 w-4 sm:h-5 sm:w-5" />
+                        <span className="ml-1 text-xs sm:text-sm">Слушать</span>
+                      </Button>
+                      <Button variant="ghost" size="sm" className="hidden sm:flex">
+                        <Share2 className="h-4 w-4 mr-2" />
+                        Поделиться
+                      </Button>
+                      <Button variant="ghost" size="sm" className="h-8 px-2 sm:h-9 sm:px-3">
+                        <MoreHorizontal className="h-4 w-4 sm:h-5 sm:w-5" />
+                        <span className="hidden sm:inline ml-2">Ещё</span>
+                      </Button>
+                    </div>
                   </div>
 
                                 {/* Article Image */}
@@ -696,46 +683,43 @@ const VcPage = () => {
               {/* Sidebar - 1 column */}
               <div className="lg:col-span-1 space-y-6">
                 
-                {/* Block 1: Trending */}
+                {/* Publication Block */}
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0">
+                      <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                          <path fill="#242424" fillRule="evenodd" d="M12.286 3A2.33 2.33 0 0 1 14 3.748 2.325 2.325 0 0 1 15.714 3C16.977 3 18 3.99 18 5.21c0 .567-.22 1.083-.582 1.474l-.18.184-2.543 2.46a1 1 0 0 1-1.39 0l-2.543-2.46-.18-.184A2.16 2.16 0 0 1 10 5.211C10 3.99 11.023 3 12.286 3M17 5.21c0 .297-.113.571-.308.787l-.16.163L14 8.609l-2.533-2.45-.159-.162A1.16 1.16 0 0 1 11 5.21C11 4.573 11.544 4 12.286 4c.396 0 .742.167.975.422l.739.81.739-.81c.233-.255.58-.422.975-.422C16.456 4 17 4.573 17 5.21m3.542 5.293a.62.62 0 0 1 .513.185.6.6 0 0 1 .188.42c.005.119-.07.275-.298.52l-3.33 3.587c-.285.306-.682.48-1.1.48h-3.329c-.663 0-1.298.263-1.766.732l-.849.849-.033.032-3.588-3.116 1.87-1.705a2.5 2.5 0 0 1 1.685-.652h.27q.037.006.077.006h5.279a.757.757 0 1 1 0 1.514h-3.267a.5.5 0 1 0 0 1h3.267a1.757 1.757 0 0 0 1.749-1.928l2.288-1.73c.182-.137.29-.187.374-.194M6.19 13.53l1.957-1.783a3.5 3.5 0 0 1 2.358-.913h1.103v.006h4.523c.543 0 1.028.246 1.35.633L19.566 9.9c.198-.15.503-.36.893-.394.352-.03.865.035 1.305.476.352.352.466.755.48 1.086.022.561-.33.987-.565 1.24l-3.331 3.587c-.285.306-.682.48-1.1.48h-3.329c-.663 0-1.298.263-1.766.732l-.849.849-.033.032-3.588-3.116 1.87-1.705a2.5 2.5 0 0 1 1.685-.652h.27q.037.006.077.006h5.279a.757.757 0 1 1 0 1.514h-3.267a.5.5 0 1 0 0 1h3.267a1.757 1.757 0 0 0 1.749-1.928l2.288-1.73c.182-.137.29-.187.374-.194M6.19 13.53l1.957-1.783a3.5 3.5 0 0 1 2.358-.913h1.103v.006h4.523c.543 0 1.028.246 1.35.633L19.566 9.9c.198-.15.503-.36.893-.394.352-.03.865.035 1.305.476.352.352.466.755.48 1.086.022.561-.33.987-.565 1.24l-3.331 3.587c-.285.306-.682.48-1.1.48h-3.33c-.397 0-.777.157-1.06.439l-.831.832.252.219a1 1 0 0 1 .1 1.41L9.99 21.503a1 1 0 0 1-1.411.099l-5.825-5.06a1 1 0 0 1-.1-1.41l1.656-1.907a1 1 0 0 1 1.411-.1zm-2.78 2.255 1.656-1.906 5.826 5.06-1.656 1.906z" clipRule="evenodd"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-1">
+                        AI & Technology Insights
+                      </h4>
+                      <p className="text-xs text-gray-600 mb-3 line-clamp-2">
+                        Публикация для экспертных статей о искусственном интеллекте, технологиях и их влиянии на будущее. От исследователей, для исследователей.
+                      </p>
+                      <Button variant="outline" size="sm" className="text-xs">
+                        Поддержать
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Block 1: Reading List */}
                 <div className="bg-gray-50 rounded-lg p-6">
                   <div className="flex items-center gap-2 mb-4">
-                    <TrendingUp className="h-5 w-5 text-blue-600" />
-                    <h3 className="text-lg font-semibold text-gray-900">Популярное</h3>
+                    <Bookmark className="h-5 w-5 text-blue-600" />
+                    <h3 className="text-lg font-semibold text-gray-900">Reading list</h3>
                   </div>
-                  <div className="space-y-4">
-                    <div className="border-b border-gray-200 pb-3">
-                      <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
-                        Искусственный интеллект в 2025 году: основные тренды и прогнозы
-                      </a>
-                      <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
-                        <Eye className="h-3 w-3" />
-                        <span>12.5K</span>
-                        <span>•</span>
-                        <span>2 часа назад</span>
-                      </div>
-                    </div>
-                    <div className="border-b border-gray-200 pb-3">
-                      <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
-                        ChatGPT vs Claude: сравнение возможностей и производительности
-                      </a>
-                      <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
-                        <Eye className="h-3 w-3" />
-                        <span>8.2K</span>
-                        <span>•</span>
-                        <span>5 часов назад</span>
-                      </div>
-                    </div>
-                    <div>
-                      <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
-                        Машинное обучение в медицине: революция в диагностике
-                      </a>
-                      <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
-                        <Eye className="h-3 w-3" />
-                        <span>6.7K</span>
-                        <span>•</span>
-                        <span>1 день назад</span>
-                      </div>
-                    </div>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Click the <Bookmark className="h-4 w-4 inline text-gray-400" /> on any story to easily add it to your reading list or a custom list that you can share.
+                  </p>
+                  <div className="text-center py-8">
+                    <Bookmark className="h-12 w-12 text-gray-300 mx-auto mb-3" />
+                    <p className="text-sm text-gray-500">Your reading list is empty</p>
+                    <p className="text-xs text-gray-400 mt-1">Start building your list by bookmarking stories</p>
                   </div>
                 </div>
 
@@ -747,33 +731,50 @@ const VcPage = () => {
                   </div>
                   <div className="space-y-4">
                     <div className="border-b border-gray-200 pb-3">
-                      <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
-                        Нейросети в образовании: как AI меняет процесс обучения
-                      </a>
-                      <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
-                        <span>Автор: TechEdu</span>
-                        <span>•</span>
-                        <span>30 мин назад</span>
+                      <div className="flex gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                          <PlayCircle className="h-3 w-3 text-gray-400" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
+                            Нейросети в образовании: как AI меняет процесс обучения
+                          </a>
+                          <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
+                            <span>30 мин назад</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="border-b border-gray-200 pb-3">
-                      <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
-                        Этика искусственного интеллекта: вызовы и решения
-                      </a>
-                      <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
-                        <span>Автор: AI Ethics</span>
-                        <span>•</span>
-                        <span>1 час назад</span>
+                      <div className="flex gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                          <svg className="h-3 w-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
+                            Этика искусственного интеллекта: вызовы и решения
+                          </a>
+                          <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
+                            <span>1 час назад</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div>
-                      <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
-                        Квантовые вычисления и их влияние на криптографию
-                      </a>
-                      <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
-                        <span>Автор: QuantumTech</span>
-                        <span>•</span>
-                        <span>2 часа назад</span>
+                      <div className="flex gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                          <PlayCircle className="h-3 w-3 text-gray-400" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
+                            Квантовые вычисления и их влияние на криптографию
+                          </a>
+                          <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
+                            <span>2 часа назад</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -787,33 +788,52 @@ const VcPage = () => {
                   </div>
                   <div className="space-y-4">
                     <div className="border-b border-gray-200 pb-3">
-                      <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
-                        Сравнение GPT-3.5 и GPT-4: детальный анализ различий
-                      </a>
-                      <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
-                        <span>5 мин чтения</span>
-                        <span>•</span>
-                        <span>AI Research</span>
+                      <div className="flex gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                          <svg className="h-3 w-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
+                            Сравнение GPT-3.5 и GPT-4: детальный анализ различий
+                          </a>
+                          <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
+                            <span>5 мин чтения</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="border-b border-gray-200 pb-3">
-                      <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
-                        Будущее языковых моделей: что нас ждет после GPT-4
-                      </a>
-                      <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
-                        <span>7 мин чтения</span>
-                        <span>•</span>
-                        <span>Future Tech</span>
+                      <div className="flex gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                          <PlayCircle className="h-3 w-3 text-gray-400" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
+                            Будущее языковых моделей: что нас ждет после GPT-4
+                          </a>
+                          <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
+                            <span>7 мин чтения</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div>
-                      <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
-                        OpenAI: история создания и развития компании
-                      </a>
-                      <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
-                        <span>10 мин чтения</span>
-                        <span>•</span>
-                        <span>Tech History</span>
+                      <div className="flex gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                          <svg className="h-3 w-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <a href="#" className="text-sm font-medium text-gray-900 hover:text-blue-600 line-clamp-2">
+                            OpenAI: история создания и развития компании
+                          </a>
+                          <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
+                            <span>10 мин чтения</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
