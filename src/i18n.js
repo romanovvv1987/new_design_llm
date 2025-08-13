@@ -146,6 +146,7 @@ const resources = {
       'button.like': 'Нравится',
       'button.share': 'Поделиться',
       'button.bookmark': 'Закладка',
+      'button.createList': 'Создать список',
       'button.comment': 'Комментировать',
       'button.listen': 'Слушать',
       'button.search': 'Поиск',

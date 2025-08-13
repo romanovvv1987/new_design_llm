@@ -21,6 +21,7 @@ import SocialMediaBlock from './ui/SocialMediaBlock'
 import ReadingListBlock from './ui/ReadingListBlock'
 import WhoToFollowBlock from './ui/WhoToFollowBlock'
 import AIModelsPreviewBlock from './ui/AIModelsPreviewBlock'
+import MobileBookmarksDrawer from './ui/MobileBookmarksDrawer'
 
 import { 
   Search, 
@@ -51,6 +52,7 @@ const VcFeedPage = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false)
+  const [isBookmarksDrawerOpen, setIsBookmarksDrawerOpen] = useState(false)
 
   // Данные для ленты статей
   const articles = [
@@ -355,6 +357,13 @@ const VcFeedPage = () => {
             {/* Mobile Actions */}
             <div className="flex lg:hidden items-center gap-2">
               <LanguageSelect />
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => setIsBookmarksDrawerOpen(true)}
+              >
+                <Bookmark className="h-4 w-4" />
+              </Button>
               <Sheet open={isSearchOpen} onOpenChange={setIsSearchOpen}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="sm">
@@ -772,7 +781,9 @@ const VcFeedPage = () => {
               
               <AIModelsPreviewBlock />
               
-              <ReadingListBlock />
+              <div className="hidden lg:block">
+                <ReadingListBlock />
+              </div>
 
 
 
@@ -785,6 +796,12 @@ const VcFeedPage = () => {
           </div>
         </Container>
       </main>
+
+      {/* Mobile Bookmarks Drawer */}
+      <MobileBookmarksDrawer 
+        isOpen={isBookmarksDrawerOpen}
+        onClose={() => setIsBookmarksDrawerOpen(false)}
+      />
     </div>
   )
 }
