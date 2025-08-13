@@ -642,22 +642,29 @@ const VcFeedPage = () => {
                       
                       {/* Article Content */}
                       <div className="flex-1 min-w-0">
-                        {/* Title, Premium Badge and Bookmark */}
+                        {/* Title and Bookmark */}
                         <div className="flex items-start justify-between mb-2">
-                          <div className="flex items-start gap-2 flex-1">
+                          <div className="flex-1">
                             <h2 className="text-lg lg:text-xl font-semibold text-gray-900 line-clamp-2 hover:text-blue-600 cursor-pointer">
                               {article.title}
                             </h2>
-                            {article.isPremium && (
-                              <div className="flex-shrink-0 p-1">
-                                <Star className="h-3 w-3 text-yellow-500" />
-                              </div>
-                            )}
                           </div>
                           <button className="flex-shrink-0 text-gray-400 hover:text-blue-600 transition-colors ml-2">
                             <Bookmark className="h-5 w-5" />
                           </button>
                         </div>
+                        
+                        {/* Premium Badge - Mobile: under title, Desktop: next to title */}
+                        {article.isPremium && (
+                          <div className="mb-2">
+                            <div className="inline-flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-medium-border bg-medium-background text-medium-primary shadow-sm">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 fill-yellow-400">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                              </svg>
+                              <span>Только для участников</span>
+                            </div>
+                          </div>
+                        )}
                         
                         {/* Subtitle */}
                         <p className="text-gray-600 text-sm lg:text-base mb-3 line-clamp-2">
