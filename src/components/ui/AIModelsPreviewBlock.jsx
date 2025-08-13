@@ -1,16 +1,15 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { ArrowUp, ArrowDown } from 'lucide-react'
 
 const AIModelsPreviewBlock = () => {
   const { t } = useTranslation()
 
   const models = [
-    { rank: 1, name: "GPT-4", company: "OpenAI", version: "23.02.2025", inputPrice: "$10", outputPrice: "$30" },
-    { rank: 2, name: "Claude 3 Opus", company: "Anthropic", version: "15.02.2025", inputPrice: "$5", outputPrice: "$25" },
-    { rank: 3, name: "Gemini Ultra", company: "Google", version: "10.02.2025", inputPrice: "$3.50", outputPrice: "$10.50" },
-    { rank: 4, name: "Claude 3 Sonnet", company: "Anthropic", version: "20.02.2025", inputPrice: "$3", outputPrice: "$15" },
-    { rank: 5, name: "GPT-3.5 Turbo", company: "OpenAI", version: "18.02.2025", inputPrice: "$0.50", outputPrice: "$1.50" }
+    { rank: 1, name: "Llama", company: "Meta", version: "v3.1", price: "$8/1M", context: "32K" },
+    { rank: 2, name: "Mistral", company: "Mistral AI", version: "v8.7", price: "$25/1M", context: "64K" },
+    { rank: 3, name: "GPT-4", company: "OpenAI", version: "v4.0", price: "$30/1M", context: "128K" },
+    { rank: 4, name: "Claude 3", company: "Anthropic", version: "v3.0", price: "$15/1M", context: "200K" },
+    { rank: 5, name: "Gemini", company: "Google", version: "v1.5", price: "$7/1M", context: "1M" }
   ]
 
   return (
@@ -34,11 +33,9 @@ const AIModelsPreviewBlock = () => {
                 </div>
                 <div className="flex items-center gap-4 mt-1">
                   <p className="text-xs text-gray-500">{model.company}</p>
-                  <div className="flex items-center gap-1">
-                    <span className="text-xs text-gray-600 font-medium">{model.inputPrice}</span>
-                    <ArrowDown className="h-3 w-3 text-gray-400" />
-                    <ArrowUp className="h-3 w-3 text-gray-400" />
-                    <span className="text-xs text-gray-600 font-medium">{model.outputPrice}/1M</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-gray-600 font-medium">{model.price}</span>
+                    <span className="text-xs text-gray-500">{model.context}</span>
                   </div>
                 </div>
               </div>
