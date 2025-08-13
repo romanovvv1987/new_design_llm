@@ -16,6 +16,11 @@ import { UserMenu } from './ui/UserMenu'
 import { Tag } from './ui/Tag'
 import VideoPlaceholder from './ui/VideoPlaceholder'
 import ContentPlaceholder from './ui/ContentPlaceholder'
+import PublicationBlock from './ui/PublicationBlock'
+import SocialMediaBlock from './ui/SocialMediaBlock'
+import ReadingListBlock from './ui/ReadingListBlock'
+import WhoToFollowBlock from './ui/WhoToFollowBlock'
+import AIModelsPreviewBlock from './ui/AIModelsPreviewBlock'
 
 import { 
   Search, 
@@ -756,242 +761,17 @@ const VcFeedPage = () => {
             {/* Sidebar - 1 column */}
             <div className="lg:col-span-1 space-y-6 lg:sticky lg:top-20 lg:self-start">
               
-              {/* Publication Block */}
-              <div className="bg-gray-50 rounded-lg p-6">
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-                      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="text-sm font-semibold text-gray-900 mb-1">
-                      AI & Technology Insights
-                    </h4>
-                    <p className="text-xs text-gray-600 mb-3 line-clamp-2">
-                      Публикация для экспертных статей о искусственном интеллекте, технологиях и их влиянии на будущее. От исследователей, для исследователей.
-                    </p>
-                    <button className="inline-flex items-center justify-center rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background border border-medium-primary text-medium-primary hover:bg-medium-primary hover:text-white h-9 px-3 text-xs">
-                      <Heart className="h-4 w-4 mr-1" />
-                      Donate
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <PublicationBlock />
               
-              {/* AI Models Top 10 Preview */}
-              <div className="bg-gray-50 rounded-lg p-6">
-                <div className="mb-4">
-                  <h3 className="text-lg font-semibold text-gray-900">{t('sidebar.topAIModels')}</h3>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    { rank: 1, name: "GPT-4", company: "OpenAI", version: "23.02.2025", inputPrice: "$10", outputPrice: "$30" },
-                    { rank: 2, name: "Claude 3 Opus", company: "Anthropic", version: "15.02.2025", inputPrice: "$5", outputPrice: "$25" },
-                    { rank: 3, name: "Gemini Ultra", company: "Google", version: "10.02.2025", inputPrice: "$3.50", outputPrice: "$10.50" },
-                    { rank: 4, name: "Claude 3 Sonnet", company: "Anthropic", version: "20.02.2025", inputPrice: "$3", outputPrice: "$15" },
-                    { rank: 5, name: "GPT-3.5 Turbo", company: "OpenAI", version: "18.02.2025", inputPrice: "$0.50", outputPrice: "$1.50" }
-                  ].map((model) => (
-                    <div key={model.rank} className="group cursor-pointer">
-                      <div className="flex items-center gap-3">
-                        <div className="flex-shrink-0 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center">
-                          <span className="text-xs font-bold text-blue-600">{model.rank}</span>
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center gap-2">
-                            <h4 className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                              {model.name}
-                            </h4>
-                            <span className="text-xs text-gray-500">({model.version})</span>
-                          </div>
-                          <div className="flex items-center gap-4 mt-1">
-                            <p className="text-xs text-gray-500">{model.company}</p>
-                            <div className="flex items-center gap-1">
-                              <span className="text-xs text-gray-600 font-medium">{model.inputPrice}</span>
-                              <ArrowDown className="h-3 w-3 text-gray-400" />
-                              <ArrowUp className="h-3 w-3 text-gray-400" />
-                              <span className="text-xs text-gray-600 font-medium">{model.outputPrice}/1M</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 pt-4 border-t border-gray-200">
-                  <a href="/top10" className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
-                    {t('sidebar.viewFullRanking')} →
-                  </a>
-                </div>
-              </div>
+              <AIModelsPreviewBlock />
               
-              {/* Reading List */}
-              <div className="bg-gray-50 rounded-lg p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Bookmark className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-gray-900">{t('sidebar.readingList')}</h3>
-                </div>
-                <p className="text-sm text-gray-600 mb-4">
-                  {t('readingList.instructions')}
-                </p>
-                <div className="text-center py-8">
-                  <Bookmark className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-                  <p className="text-sm text-gray-500">{t('sidebar.readingListEmpty')}</p>
-                  <p className="text-xs text-gray-400 mt-1">{t('sidebar.readingListDescription')}</p>
-                </div>
-              </div>
+              <ReadingListBlock />
 
 
 
-              {/* Who to Follow */}
-              <div className="bg-gray-50 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('sidebar.whoToFollow')}</h3>
-                <div className="space-y-4">
-                  {/* Author 1 */}
-                  <div className="flex items-start gap-3">
-                    <Avatar 
-                      alt="Linda Caroll" 
-                      size="md"
-                      src="https://miro.medium.com/v2/resize:fill:128:128/1*Qyz-Q2jRxi9usgoaacyF9w.jpeg"
-                    />
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-sm font-semibold text-gray-900 truncate">Linda Caroll</h4>
-                      <p className="text-xs text-gray-500 mb-1">55K {t('article.followers')}</p>
-                      <p className="text-xs text-gray-600 line-clamp-2">Everything is storytelling. https://lindac.substack.com/</p>
-                    </div>
-                    <Button variant="ghost" size="icon" className="flex-shrink-0 text-gray-400 hover:text-blue-600">
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                  </div>
+              <WhoToFollowBlock />
 
-                  {/* Author 2 */}
-                  <div className="flex items-start gap-3">
-                    <Avatar 
-                      alt="Write A Catalyst" 
-                      size="md"
-                      src="https://miro.medium.com/v2/resize:fill:128:128/1*KCHN5TM3Ga2PqZHA4hNbaw.png"
-                    />
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-sm font-semibold text-gray-900 truncate">Write A Catalyst</h4>
-                      <p className="text-xs text-gray-500 mb-1">Publication · 132K {t('article.followers')}</p>
-                      <p className="text-xs text-gray-600 line-clamp-2">Write A Catalyst and Build it into Existence.</p>
-                    </div>
-                    <Button variant="ghost" size="icon" className="flex-shrink-0 text-gray-400 hover:text-blue-600">
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                  </div>
-
-                  {/* Author 3 */}
-                  <div className="flex items-start gap-3">
-                    <Avatar 
-                      alt="Wes O'Donnell" 
-                      size="md"
-                      src="https://miro.medium.com/v2/resize:fill:128:128/1*dniFgGeopx0e8X8ouGv7yQ@2x.jpeg"
-                    />
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-sm font-semibold text-gray-900 truncate">Wes O'Donnell</h4>
-                      <p className="text-xs text-gray-500 mb-1">47K {t('article.followers')}</p>
-                      <p className="text-xs text-gray-600 line-clamp-2">US Army & US Air Force Veteran | Global Security Writer | Juris Doctor | Intel Forecaster | TEDx Speaker</p>
-                    </div>
-                    <Button variant="ghost" size="icon" className="flex-shrink-0 text-gray-400 hover:text-blue-600">
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                  </div>
-
-                  {/* Author 4 */}
-                  <div className="flex items-start gap-3">
-                    <Avatar 
-                      alt="Counter Arts" 
-                      size="md"
-                      src="https://miro.medium.com/v2/resize:fill:128:128/1*StB59injG6ZBN2B2iksKYg.png"
-                    />
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-sm font-semibold text-gray-900 truncate">Counter Arts</h4>
-                      <p className="text-xs text-gray-500 mb-1">Publication · 37K {t('article.followers')}</p>
-                      <p className="text-xs text-gray-600 line-clamp-2">The (Counter)Cultural One-Stop for Nonfiction on Medium… incorporating categories for: 'Art', 'Culture', 'Equality', 'Photography', 'Film', 'Mental Health', 'Music' and 'Literature'.</p>
-                    </div>
-                    <Button variant="ghost" size="icon" className="flex-shrink-0 text-gray-400 hover:text-blue-600">
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                  </div>
-
-                  {/* Author 5 */}
-                  <div className="flex items-start gap-3">
-                    <Avatar 
-                      alt="Dr. Allison Wiltz" 
-                      size="md"
-                      src="https://miro.medium.com/v2/resize:fill:128:128/1*f8Q6_ie8s7pPBleC5vG6xQ@2x.jpeg"
-                    />
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-sm font-semibold text-gray-900 truncate">Dr. Allison Wiltz</h4>
-                      <p className="text-xs text-gray-500 mb-1">73K {t('article.followers')}</p>
-                      <p className="text-xs text-gray-600 line-clamp-2">Black womanist scholar with a PhD from New Orleans, LA with bylines in Oprah Daily, Momentum, ZORA, Cultured. #WEOC Founder</p>
-                    </div>
-                    <Button variant="ghost" size="icon" className="flex-shrink-0 text-gray-400 hover:text-blue-600">
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Social Media */}
-              <div className="bg-gray-50 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('social.joinUs')}</h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  {t('social.followUpdates')}
-                </p>
-                <div className="grid grid-cols-2 gap-3">
-                  <a 
-                    href="https://vk.com/group" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.48 14.27h-1.46c-.55 0-.72-.44-1.71-1.42-.86-.86-1.24-.96-1.45-.96-.31 0-.4.1-.4.65v1.3c0 .47-.14.67-1.24.67-1.82 0-3.74-1.14-5.05-3.27C6.68 10.91 6.6 9.7 6.6 9.46c0-.21.1-.4.65-.4h1.46c.47 0 .61.21.78.67.76 2.26 2.02 4.23 2.54 4.23.18 0 .27-.09.27-.58V9.5c-.06-1-.58-1.08-.58-1.44 0-.18.14-.36.36-.36h2.28c.31 0 .42.15.42.49v2.66c0 .31.18.42.27.42.18 0 .31-.09.6-.89.39-1.18 1.12-3.36 1.12-3.36.09-.18.27-.36.66-.36h1.46c.55 0 .67.27.55.66-.24 1.14-2.57 4.53-2.57 4.53-.2.31-.27.42 0 .76.18.27.78.84 1.18 1.34.78.91 1.34 1.69 1.5 2.21.14.47-.09.71-.55.71z"/>
-                    </svg>
-                    <span className="text-sm font-medium">ВКонтакте</span>
-                  </a>
-                  
-                  <a 
-                    href="https://facebook.com/group" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-800 hover:bg-blue-900 text-white rounded-lg transition-colors"
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                    <span className="text-sm font-medium">Facebook</span>
-                  </a>
-                  
-                  <a 
-                    href="https://twitter.com/group" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg transition-colors"
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                    </svg>
-                    <span className="text-sm font-medium">Twitter</span>
-                  </a>
-                  
-                  <a 
-                    href="https://t.me/group" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                    </svg>
-                    <span className="text-sm font-medium">Telegram</span>
-                  </a>
-                </div>
-              </div>
+              <SocialMediaBlock />
 
 
             </div>
