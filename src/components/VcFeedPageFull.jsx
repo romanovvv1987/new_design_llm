@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button } from './ui/Button'
 import { Avatar } from './ui/Avatar'
 import { Badge } from './ui/Badge'
@@ -36,10 +37,12 @@ import {
   X,
   ArrowUp,
   ArrowDown,
-  Minus
+  Minus,
+  Plus
 } from 'lucide-react'
 
 const VcFeedPage = () => {
+  const { t } = useTranslation();
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false)
@@ -821,9 +824,8 @@ const VcFeedPage = () => {
               
               {/* AI Models Top 10 Preview */}
               <div className="bg-gray-50 rounded-lg p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <TrendingUp className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-gray-900">Top AI Models</h3>
+                <div className="mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900">{t('sidebar.topAIModels')}</h3>
                 </div>
                 <div className="space-y-3">
                   {[
@@ -851,7 +853,7 @@ const VcFeedPage = () => {
                               <span className="text-xs text-gray-600 font-medium">{model.inputPrice}</span>
                               <ArrowDown className="h-3 w-3 text-gray-400" />
                               <ArrowUp className="h-3 w-3 text-gray-400" />
-                              <span className="text-xs text-gray-600 font-medium">{model.outputPrice}</span>
+                              <span className="text-xs text-gray-600 font-medium">{model.outputPrice}/1M</span>
                             </div>
                           </div>
                         </div>
@@ -900,8 +902,8 @@ const VcFeedPage = () => {
                       <p className="text-xs text-gray-500 mb-1">55K followers</p>
                       <p className="text-xs text-gray-600 line-clamp-2">Everything is storytelling. https://lindac.substack.com/</p>
                     </div>
-                    <Button variant="outline" size="sm" className="flex-shrink-0">
-                      Follow
+                    <Button variant="ghost" size="icon" className="flex-shrink-0 text-gray-400 hover:text-blue-600">
+                      <Plus className="h-4 w-4" />
                     </Button>
                   </div>
 
@@ -919,8 +921,8 @@ const VcFeedPage = () => {
                       <p className="text-xs text-gray-500 mb-1">47K followers</p>
                       <p className="text-xs text-gray-600 line-clamp-2">US Army & US Air Force Veteran | Global Security Writer | Juris Doctor | Intel Forecaster | TEDx Speaker</p>
                     </div>
-                    <Button variant="outline" size="sm" className="flex-shrink-0">
-                      Follow
+                    <Button variant="ghost" size="icon" className="flex-shrink-0 text-gray-400 hover:text-blue-600">
+                      <Plus className="h-4 w-4" />
                     </Button>
                   </div>
 
@@ -936,8 +938,8 @@ const VcFeedPage = () => {
                       <p className="text-xs text-gray-500 mb-1">Publication · 37K followers</p>
                       <p className="text-xs text-gray-600 line-clamp-2">The (Counter)Cultural One-Stop for Nonfiction on Medium… incorporating categories for: 'Art', 'Culture', 'Equality', 'Photography', 'Film', 'Mental Health', 'Music' and 'Literature'.</p>
                     </div>
-                    <Button variant="outline" size="sm" className="flex-shrink-0">
-                      Follow
+                    <Button variant="ghost" size="icon" className="flex-shrink-0 text-gray-400 hover:text-blue-600">
+                      <Plus className="h-4 w-4" />
                     </Button>
                   </div>
 
@@ -953,17 +955,10 @@ const VcFeedPage = () => {
                       <p className="text-xs text-gray-500 mb-1">73K followers</p>
                       <p className="text-xs text-gray-600 line-clamp-2">Black womanist scholar with a PhD from New Orleans, LA with bylines in Oprah Daily, Momentum, ZORA, Cultured. #WEOC Founder</p>
                     </div>
-                    <Button variant="outline" size="sm" className="flex-shrink-0">
-                      Follow
+                    <Button variant="ghost" size="icon" className="flex-shrink-0 text-gray-400 hover:text-blue-600">
+                      <Plus className="h-4 w-4" />
                     </Button>
                   </div>
-                </div>
-                
-                {/* See more link */}
-                <div className="mt-4 pt-4 border-t border-gray-200">
-                  <a href="#" className="text-sm font-medium text-blue-600 hover:text-blue-700">
-                    See more
-                  </a>
                 </div>
               </div>
 

@@ -34,7 +34,7 @@ const resources = {
       'button.authorMadeStoryAvailable': 'The author made this story available to GPTMARKETCUP members only.',
       
       // Sidebar blocks
-      'sidebar.readingList': 'Reading list',
+      'sidebar.readingList': 'Bookmarks',
       'sidebar.readingListEmpty': 'Your reading list is empty',
       'sidebar.readingListDescription': 'Start building your list by bookmarking stories',
       'sidebar.whoToFollow': 'Who to follow',
@@ -99,6 +99,7 @@ const resources = {
       'aiModels.version': 'Version',
       'aiModels.inputPrice': 'Input Price',
       'aiModels.outputPrice': 'Output Price',
+      'aiModels.pricePer1M': 'per 1M tokens',
       
       // Common
       'common.following': 'following',
@@ -138,11 +139,11 @@ const resources = {
       'button.authorMadeStoryAvailable': 'Автор сделал эту историю доступной только для участников GPTMARKETCUP.',
       
       // Sidebar blocks
-      'sidebar.readingList': 'Reading list',
+      'sidebar.readingList': 'Закладки',
       'sidebar.readingListEmpty': 'Ваш список чтения пуст',
       'sidebar.readingListDescription': 'Начните создавать список, добавляя истории в закладки',
-      'sidebar.whoToFollow': 'Кого читать',
-      'sidebar.topAIModels': 'Топ AI моделей',
+      'sidebar.whoToFollow': 'Кого почитать',
+      'sidebar.topAIModels': 'AI модели',
       'sidebar.viewFullRanking': 'Посмотреть полный рейтинг',
       'sidebar.latest': 'Последние',
       'sidebar.related': 'Похожие',
@@ -203,6 +204,7 @@ const resources = {
       'aiModels.version': 'Версия',
       'aiModels.inputPrice': 'Цена ввода',
       'aiModels.outputPrice': 'Цена вывода',
+      'aiModels.pricePer1M': 'за 1M токенов',
       
       // Common
       'common.following': 'подписок',
